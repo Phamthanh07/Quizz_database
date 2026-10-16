@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDAC DBMS MCQ Practice & Test Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        code, pre { font-family: 'Fira Code', monospace; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(30, 41, 59, 0.5); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.5); border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.8); }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col selection:bg-sky-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showView('home')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/20">
+                    <i class="fa-solid fa-database text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight bg-gradient-to-r from-white via-slate-200 to-sky-400 bg-clip-text text-transparent">CDAC DBMS Prep</h1>
+                    <p class="text-xs text-slate-400">260 Question Bank & Exam Suite</p>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-1">
+                <button onclick="showView('home')" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 transition text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-house mr-1.5 text-sky-400"></i> Modules
+                </button>
+                <button onclick="showView('search')" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 transition text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-magnifying-glass mr-1.5 text-indigo-400"></i> Search Bank
+                </button>
+                <button onclick="showView('history')" class="nav-btn px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 transition text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-chart-line mr-1.5 text-emerald-400"></i> Stats & History
+                </button>
+            </nav>
+
+            <div class="flex items-center space-x-2">
+                <button id="quick-practice-btn" onclick="startQuiz('all', 'practice')" class="hidden sm:inline-flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold shadow-md transition">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Quick All Questions</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- VIEW 1: HOME / MODULE SELECTION -->
+        <section id="view-home" class="space-y-6">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-800 via-slate-800/80 to-indigo-950/60 p-6 sm:p-8 border border-slate-700/60 shadow-xl">
+                <div class="relative z-10 max-w-2xl">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20 mb-3">
+                        CDAC C-DAC C-CAT Prep 2026
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Database Management Systems Mastery</h2>
+                    <p class="mt-2 text-slate-300 text-sm sm:text-base">
+                        Practice 260 curated questions across 13 core modules. Test your knowledge in interactive practice mode or timed examination mode.
+                    </p>
+                    <div class="mt-5 flex flex-wrap gap-3">
+                        <button onclick="startQuiz('all', 'practice')" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-medium text-sm shadow-lg shadow-sky-600/30 transition flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-play"></i>
+                            <span>Start Full Practice (260 Qs)</span>
+                        </button>
+                        <button onclick="startQuiz('all', 'exam')" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-medium text-sm border border-slate-600 transition flex items-center space-x-2">
+                            <i class="fa-solid fa-stopwatch text-amber-400"></i>
+                            <span>Take Timed Exam</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Global Options Control Bar -->
+            <div class="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center space-x-4 flex-wrap">
+                    <label class="inline-flex items-center space-x-2 text-xs text-slate-300 cursor-pointer">
+                        <input type="checkbox" id="opt-shuffle-q" class="rounded bg-slate-900 border-slate-700 text-sky-500 focus:ring-sky-500">
+                        <span>Shuffle Questions</span>
+                    </label>
+                    <label class="inline-flex items-center space-x-2 text-xs text-slate-300 cursor-pointer">
+                        <input type="checkbox" id="opt-shuffle-o" class="rounded bg-slate-900 border-slate-700 text-sky-500 focus:ring-sky-500">
+                        <span>Shuffle Options</span>
+                    </label>
+                </div>
+                <div class="text-xs text-slate-400">
+                    Total Questions: <span class="text-slate-200 font-semibold">260 Questions</span>
+                </div>
+            </div>
+
+            <!-- Module Grid -->
+            <div>
+                <h3 class="text-lg font-bold text-slate-200 mb-4 flex items-center space-x-2">
+                    <i class="fa-solid fa-cubes text-sky-400"></i>
+                    <span>Modules Breakdown</span>
+                </h3>
+                <div id="module-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Dynamic Module Cards Inserted via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 2: QUIZ / EXAM INTERFACE -->
+        <section id="view-quiz" class="hidden space-y-4">
+            <!-- Quiz Control Bar Header -->
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3 shadow-md">
+                <div class="flex items-center space-x-3">
+                    <button onclick="exitQuiz()" class="p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Exit Practice">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <span id="quiz-module-tag" class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 font-medium">Module</span>
+                        <h3 id="quiz-title" class="font-bold text-sm sm:text-base text-slate-100 mt-0.5">Practice Quiz</h3>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <!-- Exam Timer -->
+                    <div id="exam-timer-box" class="hidden flex items-center space-x-2 bg-slate-900 px-3 py-1.5 rounded-lg border border-amber-500/30 text-amber-400 font-mono text-sm">
+                        <i class="fa-regular fa-clock"></i>
+                        <span id="exam-timer">00:00:00</span>
+                    </div>
+
+                    <!-- Progress -->
+                    <div class="text-right">
+                        <div class="text-xs text-slate-400">Question <span id="q-curr" class="text-sky-400 font-bold">1</span> of <span id="q-total" class="font-bold">10</span></div>
+                        <div class="w-28 sm:w-36 bg-slate-700 rounded-full h-1.5 mt-1 overflow-hidden">
+                            <div id="q-progress-bar" class="bg-sky-500 h-1.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Interactive Screen Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                <!-- Question & Options Panel -->
+                <div class="lg:col-span-3 space-y-4">
+                    <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-5 sm:p-6 shadow-xl relative min-h-[350px] flex flex-col justify-between">
+                        
+                        <div>
+                            <!-- Top metadata bar -->
+                            <div class="flex items-center justify-between border-b border-slate-700/50 pb-3 mb-4">
+                                <span id="q-type-badge" class="text-xs font-semibold uppercase tracking-wider text-slate-400">Single Answer (MC)</span>
+                                <div class="flex items-center space-x-2">
+                                    <button id="bookmark-btn" onclick="toggleBookmarkCurrent()" class="text-xs px-2.5 py-1 rounded bg-slate-700/50 hover:bg-slate-700 text-slate-300 transition flex items-center space-x-1">
+                                        <i class="fa-regular fa-bookmark"></i>
+                                        <span>Bookmark</span>
+                                    </button>
+                                    <button id="flag-btn" onclick="toggleFlagCurrent()" class="text-xs px-2.5 py-1 rounded bg-slate-700/50 hover:bg-slate-700 text-slate-300 transition flex items-center space-x-1">
+                                        <i class="fa-regular fa-flag text-amber-400"></i>
+                                        <span>Flag</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Question Text -->
+                            <div id="q-text" class="text-slate-100 font-medium text-base sm:text-lg leading-relaxed whitespace-pre-wrap">
+                                Question loading...
+                            </div>
+
+                            <!-- Choices List -->
+                            <div id="q-options" class="mt-6 space-y-2.5">
+                                <!-- Options rendered via JS -->
+                            </div>
+
+                            <!-- Instant Explanation Box (Practice Mode Only) -->
+                            <div id="explanation-box" class="hidden mt-6 p-4 rounded-xl bg-slate-900/80 border border-sky-500/30 text-sm space-y-1 animate-fadeIn">
+                                <div class="font-bold text-sky-400 flex items-center space-x-2">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <span>Explanation & Reference</span>
+                                </div>
+                                <p id="explanation-text" class="text-slate-300 leading-relaxed"></p>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Navigation Buttons -->
+                        <div class="pt-6 mt-6 border-t border-slate-700/50 flex items-center justify-between">
+                            <button id="btn-prev" onclick="navQuestion(-1)" class="px-4 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-200 text-sm font-medium transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                                <span>Previous</span>
+                            </button>
+
+                            <div class="flex items-center space-x-2">
+                                <button id="btn-submit-exam" onclick="confirmSubmitExam()" class="hidden px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition shadow-md shadow-emerald-600/20">
+                                    Submit Exam
+                                </button>
+                                <button id="btn-next" onclick="navQuestion(1)" class="px-5 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold transition shadow-md shadow-sky-600/20 flex items-center space-x-1">
+                                    <span>Next</span>
+                                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right Question Palette Grid -->
+                <div class="lg:col-span-1">
+                    <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-4 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-700/50 pb-2">
+                            <h4 class="font-bold text-sm text-slate-200">Question Palette</h4>
+                            <span class="text-xs text-slate-400" id="palette-count">0 answered</span>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="grid grid-cols-2 gap-1.5 text-[11px] text-slate-400">
+                            <div class="flex items-center space-x-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-700 border border-slate-600"></span>
+                                <span>Unanswered</span>
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
+                                <span>Answered</span>
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                                <span>Flagged</span>
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                                <span>Correct</span>
+                            </div>
+                        </div>
+
+                        <!-- Scrollable Palette Buttons Grid -->
+                        <div id="question-palette" class="grid grid-cols-5 gap-1.5 max-h-80 overflow-y-auto custom-scrollbar p-1">
+                            <!-- Buttons rendered dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 3: EXAM / PRACTICE RESULTS -->
+        <section id="view-results" class="hidden max-w-4xl mx-auto space-y-6">
+            <!-- Summary Header Card -->
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-6 sm:p-8 text-center space-y-4 shadow-xl">
+                <div class="inline-flex p-3 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                    <i class="fa-solid fa-trophy text-3xl"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Quiz Completed!</h2>
+                <p id="results-subtitle" class="text-slate-400 text-sm">Here is your overall performance breakdown</p>
+
+                <!-- Score Badges -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                    <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/60">
+                        <div class="text-xs text-slate-400">Score Percentage</div>
+                        <div id="res-score-pct" class="text-xl sm:text-2xl font-black text-sky-400 mt-1">0%</div>
+                    </div>
+                    <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/60">
+                        <div class="text-xs text-slate-400">Correct / Total</div>
+                        <div id="res-score-raw" class="text-xl sm:text-2xl font-black text-emerald-400 mt-1">0/0</div>
+                    </div>
+                    <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/60">
+                        <div class="text-xs text-slate-400">Accuracy</div>
+                        <div id="res-accuracy" class="text-xl sm:text-2xl font-black text-indigo-400 mt-1">0%</div>
+                    </div>
+                    <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/60">
+                        <div class="text-xs text-slate-400">Time Taken</div>
+                        <div id="res-time-taken" class="text-xl sm:text-2xl font-black text-amber-400 mt-1">00:00</div>
+                    </div>
+                </div>
+
+                <div class="pt-2 flex flex-wrap justify-center gap-3">
+                    <button onclick="showView('home')" class="px-5 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-medium text-sm transition">
+                        Back to Modules
+                    </button>
+                    <button onclick="retakeCurrentQuiz()" class="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition shadow-lg shadow-sky-600/30">
+                        Retake Quiz
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detailed Question Review List -->
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-5 space-y-4">
+                <h3 class="font-bold text-lg text-slate-200 border-b border-slate-700/60 pb-3 flex items-center space-x-2">
+                    <i class="fa-solid fa-list-check text-sky-400"></i>
+                    <span>Detailed Answer Key & Review</span>
+                </h3>
+
+                <div id="results-review-list" class="space-y-4 max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+                    <!-- Reviewed Questions Inserted Here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 4: SEARCH QUESTION BANK -->
+        <section id="view-search" class="hidden space-y-6">
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-5 space-y-4 shadow-lg">
+                <h3 class="text-xl font-bold text-slate-100 flex items-center space-x-2">
+                    <i class="fa-solid fa-magnifying-glass text-indigo-400"></i>
+                    <span>Search Question Bank (260 Qs)</span>
+                </h3>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <div class="relative flex-1">
+                        <i class="fa-solid fa-search absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
+                        <input type="text" id="search-input" onkeyup="filterSearchBank()" placeholder="Search terms (e.g., 'SGA', 'FOREIGN KEY', 'TRUNCATE', 'JOIN')..." class="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    </div>
+                    <select id="search-module-filter" onchange="filterSearchBank()" class="bg-slate-900 border border-slate-700 text-slate-200 text-sm rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                        <option value="ALL">All Modules</option>
+                        <!-- Dynamic Options -->
+                    </select>
+                </div>
+            </div>
+
+            <div id="search-results-list" class="space-y-4">
+                <!-- Search Result Cards -->
+            </div>
+        </section>
+
+        <!-- VIEW 5: HISTORY & STATS -->
+        <section id="view-history" class="hidden space-y-6">
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-5 space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
+                    <h3 class="text-xl font-bold text-slate-100 flex items-center space-x-2">
+                        <i class="fa-solid fa-chart-line text-emerald-400"></i>
+                        <span>Your Performance Analytics</span>
+                    </h3>
+                    <button onclick="clearQuizHistory()" class="text-xs text-rose-400 hover:text-rose-300 font-medium transition">
+                        Clear History
+                    </button>
+                </div>
+
+                <div id="history-stats-overview" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/50">
+                        <div class="text-xs text-slate-400">Total Attempts</div>
+                        <div id="hist-total-attempts" class="text-2xl font-bold text-slate-100 mt-1">0</div>
+                    </div>
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/50">
+                        <div class="text-xs text-slate-400">Average Score</div>
+                        <div id="hist-avg-score" class="text-2xl font-bold text-sky-400 mt-1">0%</div>
+                    </div>
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/50">
+                        <div class="text-xs text-slate-400">Questions Completed</div>
+                        <div id="hist-total-qs" class="text-2xl font-bold text-emerald-400 mt-1">0</div>
+                    </div>
+                </div>
+
+                <h4 class="font-bold text-sm text-slate-300 pt-2">Recent Quiz Logs</h4>
+                <div id="history-log-list" class="space-y-2 max-h-96 overflow-y-auto custom-scrollbar">
+                    <div class="text-xs text-slate-500 py-4 text-center">No quiz history recorded yet.</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-4 mt-8 text-center text-xs text-slate-500">
+        CDAC DBMS Exam Revision Tool &bull; Embedded Question Bank (260 MCQs)
+    </footer>
+
+    <!-- EMBEDDED QUESTION BANK DATA & APP LOGIC -->
+    <script>
+        // QUESTION BANK DATA STRUCTURE (Extracted and Parsed directly from CDAC Question Bank)
+        const QUESTION_BANK = [
+            // MODULE 1: Introduction to DBMS (Q1 - Q20)
+            { id: 1, module: "Introduction to DBMS", q: "Which of the following is not an advantage of the DBMS?", options: ["User application data creation.", "Data independence and efficient access.", "Reduced application development time.", "Data integrity and security."], answer: [0], type: "MC", exp: "DBMS provides data independence, security, and reduced application development time. Data creation is performed by users/applications, not an inherent internal advantage of DBMS itself." },
+            { id: 2, module: "Introduction to DBMS", q: "Which Background process updates the online redo log files with the redo log buffer entries when a COMMIT occurs in the database?", options: ["LGWR", "DBWn", "CKPT", "CJQn"], answer: [0], type: "MC", exp: "Log Writer (LGWR) writes redo log buffer contents to the online redo log file upon COMMIT." },
+            { id: 3, module: "Introduction to DBMS", q: "Which files can be multiplexed?", options: ["Data Files", "Control Files", "Parameter Files", "Data Buffer Cache"], answer: [0], type: "MC", exp: "In Oracle architecture, Control Files and Redo Log Files are multiplexed for high availability and protection." },
+            { id: 4, module: "Introduction to DBMS", q: "Which Statement about the Data files is not true?", options: ["A data file Can belong to only one tablespace", "At least one data file is required for each tablespace", "Maintain the logs of the changes made to the database to enable recovery.", "Data File contains the data in the database, including tables, indexes, temp segments etc"], answer: [2], type: "MC", exp: "Redo Log Files maintain logs of changes for recovery, NOT Data files." },
+            { id: 5, module: "Introduction to DBMS", q: "Which Statement about the Oracle Initialization Parameter Files (init.ora) is not true?", options: ["Enclose in quotation marks any parameter value that contains a special character", "An initialization parameter file should contain only parameters and comments.", "Several parameters can be specified on one line, separated by a space", "Parameters must be specified in a predefined order."], answer: [3], type: "MC", exp: "Parameters in init.ora file can be specified in any order." },
+            { id: 6, module: "Introduction to DBMS", q: "What is not true about the Oracle Instance?", options: ["Oracle Instance provides means to access Oracle database", "Oracle Instance is a collection of data that is treated as a unit, which stores and retrieves related information", "Oracle Instance can open and use one database at a time", "Oracle Instance consists of SGA and background processes"], answer: [1], type: "MC", exp: "An Oracle Instance consists of Memory (SGA) and Background processes. The database itself is the physical collection of files." },
+            { id: 7, module: "Introduction to DBMS", q: "Which of the following is not a part of System Global Area?", options: ["Redo log Buffer", "Data Buffer Cache", "Parameter Files", "Shared Pool"], answer: [2], type: "MC", exp: "Parameter Files are OS files on disk, not part of SGA memory." },
+            { id: 8, module: "Introduction to DBMS", q: "Which of the following statements about the Data buffer cache is not true?", options: ["Data buffer cache stores a collection of the most recently used SQL statements.", "Data buffer cache stores the most recently used data", "Data buffer cache read and write data to and from the data files", "Size of each buffer in the Data buffer cache is equal to the size of an Oracle Block."], answer: [0], type: "MC", exp: "SQL statements are stored in the Shared Pool (Library Cache), not the Data Buffer Cache." },
+            { id: 9, module: "Introduction to DBMS", q: "Which of the following statements about the Redo log buffer is not true?", options: ["The client process records changes in the redo log buffer", "The Redo log buffer records changes made to a database", "The server process records changes in the redo log buffer", "The Redo log buffer records the block that is changed, the location of the change and the new Value."], answer: [0], type: "MC", exp: "The Server Process (or background process) records redo entries, not directly the client process." },
+            { id: 10, module: "Introduction to DBMS", q: "Which of the following is not stored by the Library Cache?", options: ["Results of the SQL statements", "The text of SQL statement", "The Parse Tree: complied version of a statement.", "The Execution Plan"], answer: [0], type: "MC", exp: "Library Cache stores SQL text, parse trees, and execution plans, but NOT result sets." },
+            { id: 11, module: "Introduction to DBMS", q: "Which of the following is not true about the Shared Pool?", options: ["The shared pool can be used by multiple SQL statements for the processing of data retrieved.", "Shared Pool is a part of the SGA", "Shared Pool consists of the Library cache and the Data dictionary cache", "The shared pool is sized by SHARED_POOL_SIZE parameter of init.ora"], answer: [0], type: "MC", exp: "Shared pool caches execution plans and data dictionary info, not row processing datasets." },
+            { id: 12, module: "Introduction to DBMS", q: "Which of the following systems requires a database?", options: ["Payroll System", "Airline reservations system", "A web site that is capturing registered users", "All of the above"], answer: [3], type: "MC", exp: "All enterprise applications requiring persistent, secure, multi-user access rely on DBMS." },
+            { id: 13, module: "Introduction to DBMS", q: "Which of the following is not contained in the Program Global Area?", options: ["SQL Execution Plan", "Session information", "Cursor information", "SQL execution work areas"], answer: [0], type: "MC", exp: "SQL Execution plans are shared in the Library Cache (SGA), not PGA." },
+            { id: 14, module: "Introduction to DBMS", q: "Which of the following is not a valid level of abstraction in a DBMS?", options: ["Tables", "Views", "Conceptual Schema", "Physical Schema"], answer: [0], type: "MC", exp: "The 3 standard levels of DBMS abstraction are External/View level, Conceptual level, and Internal/Physical level." },
+            { id: 15, module: "Introduction to DBMS", q: "Which of the following is not among the ACID properties of a Transaction?", options: ["Independence", "Atomicity", "Consistency", "Durability"], answer: [0], type: "MC", exp: "ACID stands for Atomicity, Consistency, Isolation, Durability. 'I' is Isolation." },
+            { id: 16, module: "Introduction to DBMS", q: "Which of the following are the advantages of the DBMS over a conventional file system that stores data?", options: ["All of the above", "Ability to create Data Reports", "Efficient Querying of Data", "Matching and Sorting"], answer: [0], type: "MC", exp: "DBMS provides rich query optimization, reporting, sorting, and indexing compared to flat file systems." },
+            { id: 17, module: "Introduction to DBMS", q: "Which of the following is not a valid type of a database management system?", options: ["OODBMS (Operations Oriented Database Management System)", "NDBMS (Networked Database Management System)", "HDBMS (Hierarchical Database Management System)", "RDBMS (Relational Database Management System)"], answer: [0], type: "MC", exp: "OODBMS stands for Object-Oriented DBMS, not Operations Oriented." },
+            { id: 18, module: "Introduction to DBMS", q: "Which of the following is not a part of the Oracle Database?", options: ["Shared Pool", "Data Files", "Control Files", "Redo Log Files"], answer: [0], type: "MC", exp: "Shared Pool is part of memory (Oracle Instance/SGA), while Database consists of files on disk." },
+            { id: 19, module: "Introduction to DBMS", q: "In an instance, multiple ________ can share an SGA.", options: ["Server Processes", "PMON Processes", "Instances", "Databases"], answer: [2], type: "MC", exp: "Multiple parallel server processes in an instance share the System Global Area (SGA)." },
+            { id: 20, module: "Introduction to DBMS", q: "Which component in the following list is not part of the System Global Area (SGA)?", options: ["Sort Area", "Database Buffer Cache", "Library Cache", "Shared Pool"], answer: [0], type: "MC", exp: "Sort Area is allocated in the PGA (Program Global Area) per session." },
+
+            // MODULE 2: Introduction to SQL (Q21 - Q40)
+            { id: 21, module: "Introduction to SQL", q: "What does SQL stand for?", options: ["Structured Query Language", "Structured Question Language", "Strong Question Language", "Strong Query Language"], answer: [0], type: "MC", exp: "SQL stands for Structured Query Language." },
+            { id: 22, module: "Introduction to SQL", q: "The Employee table contains these columns:\nEmpno Number(4)\nEname Varchar2(10)\njob varchar2(10)\nsal Varchar2(10)\n\nSELECT Empno, Ename, Job \"Employee Information\" FROM employee;\nHow many columns are presented after executing this query?", options: ["2", "1", "3", "0"], answer: [1], type: "MC", exp: "Wait! Notice syntax: Job \"Employee Information\" applies an alias to Job. The SELECT has 3 items: Empno, Ename, and Job (aliased). The total columns displayed is 3." },
+            { id: 23, module: "Introduction to SQL", q: "Evaluate these two SQL statements:\n1. SELECT item_id, (retail * 1.25) + 5.00 - (cost * 1.10) - (cost * .10) AS Calculated Profit FROM item;\n2. SELECT item_id, retail * 1.25 + 5.00 - cost * 1.10 - cost * .10 \"Calculated Profit\" FROM item;\nWhat will be the result?", options: ["One of the statements will NOT execute.", "Statement 1 will display the 'Calculated Profit' column heading.", "Statement 1 and statement 2 will return the same value.", "Statement 1 will return a higher value than statement 2."], answer: [0], type: "MC", exp: "Statement 1 contains an unquoted alias with spaces 'Calculated Profit' using AS which throws an error!" },
+            { id: 24, module: "Introduction to SQL", q: "Which SQL statement generates the alias Annual Salary for the calculated column SALARY*12?", options: ["SELECT ename, salary*12 AS INITCAP ('ANNUAL SALARY') FROM employees;", "SELECT ename, salary*12 AS Annual Salary FROM employees;", "SELECT ename, salary*12 Annual Salary FROM employees;", "SELECT ename, salary*12 \"Annual Salary\" FROM employees;"], answer: [3], type: "MC", exp: "Aliases containing spaces must be enclosed in double quotes." },
+            { id: 25, module: "Introduction to SQL", q: "SELECT ename, sal, 12*sal+100 FROM emp;\nWhich change calculates annual compensation as 'monthly salary plus $100 monthly bonus, multiplied by 12'?", options: ["SELECT ename, sal, 12*(sal+100) FROM emp;", "No change is required to achieve the desired results", "SELECT ename, sal, (12*sal) +100 FROM emp;", "SELECT ename, sal+100,*12 FROM emp;"], answer: [0], type: "MC", exp: "Parentheses ensure addition (sal+100) happens before multiplying by 12." },
+            { id: 26, module: "Introduction to SQL", q: "You need to produce output 'Dear Customer customer_name, '. Which statement produces this output?", options: ["SELECT 'Dear Customer ' || customer_name || ',' FROM customers;", "SELECT dear customer, customer_name, FROM customers;", "SELECT \"Dear Customer\", customer_name ',' FROM customers;", "SELECT 'Dear Customer ' customer_name ',' FROM customers;"], answer: [0], type: "MC", exp: "String concatenation operator || joins strings." },
+            { id: 27, module: "Introduction to SQL", q: "Which query will correctly display each row of the Employees table only once given that Employees table may contain duplicate rows?", options: ["SELECT distinct * from employees;", "SELECT unique rows from employees;", "SELECT * from employees;", "SELECT distinct rows from employees;"], answer: [0], type: "MC", exp: "SELECT DISTINCT * evaluates duplicate entire rows." },
+            { id: 28, module: "Introduction to SQL", q: "What will be the output of: SELECT 1 FROM employees;", options: ["This statement will return 1 as many times as the number of rows in the employees table.", "This statement will return first row of the employees table", "This statement will return only one row and one column in output and value will be 1.", "This statement will return error."], answer: [0], type: "MC", exp: "Selecting a constant literal returns that literal once per row in the table." },
+            { id: 29, module: "Introduction to SQL", q: "What of the following statements is not true?", options: ["Clauses must be placed on separate lines.", "SQL statements are not case sensitive.", "SQL statements can be on one or more lines.", "Keywords cannot be abbreviated or split across lines."], answer: [0], type: "MC", exp: "Clauses do NOT need to be on separate lines in SQL." },
+            { id: 30, module: "Introduction to SQL", q: "What is true about NULL?", options: ["NULL is a value that is unavailable, unassigned, unknown, or inapplicable", "NULL is same as blank spaces", "NULL in a number column can be treated as zero", "NULL means an incorrect value"], answer: [0], type: "MC", exp: "NULL represents unknown or unassigned data." },
+            { id: 31, module: "Introduction to SQL", q: "What should be the result of expression for employees having commission_pct as NULL?\nSELECT 12 * salary * commission_pct FROM employees;", options: ["None of the above", "Zero", "NULL", "Unpredictable"], answer: [2], type: "MC", exp: "Any arithmetic calculation involving NULL evaluates to NULL." },
+            { id: 32, module: "Introduction to SQL", q: "Which SQL statement is used to extract data from a database?", options: ["SELECT", "GET", "OPEN", "EXTRACT"], answer: [0], type: "MC", exp: "SELECT query extracts/queries data from database tables." },
+            { id: 33, module: "Introduction to SQL", q: "Which statement about column aliases is not True?", options: ["'AS' keyword must be used between the column name and the column alias", "A column alias renames a column heading", "A column alias requires double quotation marks if it contains spaces or special characters", "Immediately follows the column name."], answer: [0], type: "MC", exp: "The AS keyword is optional." },
+            { id: 34, module: "Introduction to SQL", q: "With SQL, how do you select a column named 'FirstName' from a table named 'Persons'?", options: ["SELECT Persons.FirstName ;", "SELECT FirstName FROM Persons;", "EXTRACT FirstName FROM Persons ;", "SELECT FROM persons the FirstName;"], answer: [1], type: "MC", exp: "Standard SQL syntax is SELECT col FROM table." },
+            { id: 35, module: "Introduction to SQL", q: "In: SELECT id_number, (quantity - 100 / 0.15 + 20 - 10) FROM inventory; which expression is evaluated first?", options: ["20 - 10", "0.15 + 20", "100 / 0.15", "quantity - 100"], answer: [2], type: "MC", exp: "Operator precedence: Division (/) precedes addition and subtraction." },
+            { id: 36, module: "Introduction to SQL", q: "Which SQL statement is used to return only different values?", options: ["SELECT DISTINCT", "SELECT DIFFERENT", "SELECT UNIQUE", "SELECT NO DUPLICATES"], answer: [0], type: "MC", exp: "DISTINCT filters out duplicate values." },
+            { id: 37, module: "Introduction to SQL", q: "Which clauses of a SELECT statement are mandatory?", options: ["SELECT and FROM", "Only SELECT", "SELECT and WHERE", "SELECT, FROM and WHERE"], answer: [0], type: "MC", exp: "Standard SQL queries require SELECT and FROM clauses." },
+            { id: 38, module: "Introduction to SQL", q: "Which SELECT statement displays unique combinations of POSITION and MANAGER values?", options: ["SELECT position, manager DISTINCT FROM employee;", "SELECT DISTINCT position, manager FROM employee;", "SELECT position, manager FROM employee;", "SELECT position, DISTINCT manager FROM employee;"], answer: [1], type: "MC", exp: "DISTINCT must directly follow SELECT." },
+            { id: 39, module: "Introduction to SQL", q: "Which correctly describes how to specify a column alias?", options: ["Place the alias at the end of the statement to describe the table.", "Place the alias after each column separated by a comma to describe the column.", "Place the alias after each column separated by a space to describe the column.", "Place the alias at the beginning of the statement."], answer: [2], type: "MC", exp: "Aliases follow the column name separated by space (or optional AS)." },
+            { id: 40, module: "Introduction to SQL", q: "How do you select all columns from 'Persons'?", options: ["SELECT *.Persons", "SELECT Persons", "SELECT [all] FROM Persons", "SELECT * FROM Persons"], answer: [3], type: "MC", exp: "SELECT * selects all attributes." },
+
+            // MODULE 3: DDL (Q41 - Q60)
+            { id: 41, module: "DDL", q: "What does the TRUNCATE statement do?", options: ["Removes all rows from a table and releases storage space", "Removes the table structure", "Shortens the table to 10 rows", "Removes all columns from a table"], answer: [0], type: "MC", exp: "TRUNCATE deletes all records from a table quickly without logging individual row deletes." },
+            { id: 42, module: "DDL", q: "Which statement about data types is true?", options: ["The CHAR datatype should be used for fixed-length character data", "The TIMESTAMP data type is an extension of the VARCHAR2 data type", "The BLOB data type stores character data up to four gigabytes", "The VARCHAR2 data type stores character data up to four gigabytes"], answer: [0], type: "MC", exp: "CHAR is specifically designated for fixed-length character strings." },
+            { id: 43, module: "DDL", q: "ALTER TABLE EMPLOYEES MODIFY (SALARY DEFAULT 5000);\nWhat is true about this statement?", options: ["A change to the DEFAULT value affects only subsequent insertions to the table.", "Column definitions cannot be altered to add DEFAULT values.", "Column definitions cannot be altered at add DEFAULT values for columns with a NUMBER data type", "All the rows that have a NULL value for the SALARY column will be updated with 5000."], answer: [0], type: "MC", exp: "Modifying DEFAULT values only impacts future INSERT operations." },
+            { id: 44, module: "DDL", q: "COMMERCIALS table needs DESCRIPTION changed from 1000 to 2000 bytes. Which statement is valid?", options: ["ALTER TABLE commercials MODIFY (description VARCHAR2(2000));", "ALTER TABLE commercials MODIFY (description CHAR2(2000));", "ALTER TABLE commercials CHANGE (description CHAR2(2000));", "ALTER TABLE commercials CHANGE (description VARCHAR2(2000));"], answer: [0], type: "MC", exp: "Standard Oracle syntax to expand column length: ALTER TABLE tab MODIFY (col type(size));" },
+            { id: 45, module: "DDL", q: "Evaluate: DROP TABLE DEPT;\nWhich statement is false?", options: ["All views based on the DEPT table are deleted.", "You cannot roll back this statement.", "All pending transactions are committed.", "All indexes based on the DEPT table are dropped."], answer: [0], type: "MC", exp: "Views based on dropped table become INVALID, but are not automatically deleted!" },
+            { id: 46, module: "DDL", q: "Which statement describes the ROWID data type?", options: ["A hexadecimal string representing the unique address of a row in its table.", "Binary data up to 4 gigabytes", "Character data up to 4 gigabytes.", "Raw binary data of variable length up to 2 gigabytes."], answer: [0], type: "MC", exp: "ROWID represents the physical memory/disk address of a row." },
+            { id: 47, module: "DDL", q: "ALTER TABLE marketing DROP COLUMN profit;\nWhen is column removed?", options: ["Immediately following statement execution.", "After the Alter table drop unused columns command is issued.", "After the Alter table set unused column command is issued.", "After the Alter table modify command is issued."], answer: [0], type: "MC", exp: "DROP COLUMN is a DDL command executing immediately." },
+            { id: 48, module: "DDL", q: "Which of the following can be a valid table name?", options: ["Catch_#22", "Number", "1966_Invoices", "#Invoices"], answer: [0], type: "MC", exp: "Table names must start with a letter and contain A-Z, 0-9, _, $, #." },
+            { id: 49, module: "DDL", q: "Which describes the default behaviour when you create a table?", options: ["Tables are created in your schema.", "The table is accessible to all users.", "Tables are created in the public schema.", "Tables are created in the DBA schema."], answer: [0], type: "MC", exp: "Tables are placed into the logged-in user's schema by default." },
+            { id: 50, module: "DDL", q: "Add a primary key on STUDENT_ID to empty table STUDENTS:", options: ["ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id);", "ALTER TABLE students ADD PRIMARY KEY student_id;", "ALTER TABLE students ADD CONSTRAINT PRIMARY KEY (student_id);", "ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;"], answer: [0], type: "MC", exp: "Standard constraint syntax: ADD CONSTRAINT name PRIMARY KEY (col)." },
+            { id: 51, module: "DDL", q: "TRUNCATE TABLE DEPT;\nWhich statement is NOT true?", options: ["It does not release the storage space used by the table.", "It releases the storage space used by the table.", "You can NOT roll back the deletion of rows.", "You must be the owner or have DELETE ANY TABLE privilege."], answer: [0], type: "MC", exp: "TRUNCATE DOES release storage space back to the tablespace." },
+            { id: 52, module: "DDL", q: "Which is not a correct guideline for naming database tables?", options: ["Must begin with either a number or a letter.", "Must be 1-30 characters long.", "Should not be an Oracle Server reserved word.", "Must contain only A-Z, a-z, 0-9, _, $, and #."], answer: [0], type: "MC", exp: "Table names MUST begin with a letter, never a number." },
+            { id: 53, module: "DDL", q: "Which is a valid CREATE TABLE statement?", options: ["CREATE TABLE EMP_TEST AS (empid number(2));", "CREATE TABLE EMP9$# (empid number(2));", "CREATE TABLE EMP*123 (empid number(2));", "CREATE TABLE PACKAGE (packid num(2));"], answer: [1], type: "MC", exp: "EMP9$# uses valid characters and correct table definition syntax." },
+            { id: 54, module: "DDL", q: "Which DATETIME data type cannot be used when specifying column definitions?", options: ["INTERVAL MONTH TO DAY", "TIMESTAMP", "INTERVAL DAY TO SECOND", "INTERVAL YEAR TO MONTH"], answer: [0], type: "MC", exp: "INTERVAL MONTH TO DAY is invalid syntax (valid is YEAR TO MONTH or DAY TO SECOND)." },
+            { id: 55, module: "DDL", q: "Which statement about a table is true?", options: ["The size of a table does NOT need to be specified", "A table can have up to 10,000 columns", "A table CANNOT be created while users are using database.", "Structure CANNOT be modified online."], answer: [0], type: "MC", exp: "Oracle handles table extents dynamically." },
+            { id: 56, module: "DDL", q: "Increase EMP_LNAME column length to 25 with 3000 records existing:", options: ["ALTER TABLE employee MODIFY emp_lname VARCHAR2(25);", "You CANNOT increases the width.", "ALTER TABLE employee RENAME emp_lname VARCHAR2(25);", "ALTER employee TABLE MODIFY COLUMN emp_lname VARCHAR2(25);"], answer: [0], type: "MC", exp: "Increasing column length with data present is completely supported." },
+            { id: 57, module: "DDL", q: "Which statement permanently removes all data, indexes, and structure of PO_DETAIL?", options: ["DROP TABLE po_detail;", "DELETE TABLE po_detail;", "TRUNCATE TABLE po_detail;", "ALTER TABLE po_detail SET UNUSED..."], answer: [0], type: "MC", exp: "DROP TABLE deletes structure, data, and indexes." },
+            { id: 58, module: "DDL", q: "MGR_ID contains numbers, need to convert column type to VARCHAR2 with records existing:", options: ["You CANNOT modify the data type of column unless column is empty.", "ALTER employee MODIFY (mgr_id VARCHAR2(15));", "ALTER TABLE employee MODIFY (mgr_id VARCHAR2(15));", "ALTER employee TABLE MODIFY COLUMN (mgr_id VARCHAR2(15));"], answer: [0], type: "MC", exp: "Oracle requires a column to be empty (all NULL) to change its data type." },
+            { id: 59, module: "DDL", q: "Which CREATE TABLE statement will not fail?", options: ["CREATE TABLE time1 (time_id NUMBER(9));", "CREATE TABLE date (time_id NUMBER(9));", "CREATE TABLE time* (time_id NUMBER(9));", "CREATE TABLE $time (time_id NUMBER(9));"], answer: [0], type: "MC", exp: "'DATE' is a reserved keyword, 'time*' has illegal char, '$time' starts with illegal symbol." },
+            { id: 60, module: "DDL", q: "Reduce LIST_PRICE precision to NUMBER(6,2) and DEFAULT 5 in empty PRODUCT table:", options: ["ALTER TABLE product MODIFY (list_price NUMBER(6,2) DEFAULT 5);", "ALTER TABLE product ADD OR REPLACE (list_price NUMBER(8,2) DEFAULT 5);", "ALTER TABLE product MODIFY COLUMN (list_price NUMBER(6,2) DEFAULT '$5.00');", "You CANNOT reduce size."], answer: [0], type: "MC", exp: "If the table is empty, reducing precision and default is allowed using ALTER TABLE MODIFY." },
+
+            // MODULE 4: Constraints (Q61 - Q80)
+            { id: 61, module: "Constraints", q: "Which ALTER TABLE statement adds PRIMARY KEY on MANUFACTURER_ID in INVENTORY?", options: ["ALTER TABLE inventory ADD PRIMARY KEY (manufacturer_id);", "ALTER TABLE inventory ADD CONSTRAINT manufacturer_id PRIMARY KEY;", "ALTER TABLE inventory MODIFY manufacturer_id CONSTRAINT PRIMARY KEY;", "ALTER TABLE inventory MODIFY CONSTRAINT PRIMARY KEY manufacturer_id;"], answer: [0], type: "MC", exp: "ADD PRIMARY KEY (col) creates an unnamed primary key constraint." },
+            { id: 62, module: "Constraints", q: "Which statement explicitly names a constraint?", options: ["ALTER TABLE student_grades ADD CONSTRAINT student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id);", "ALTER TABLE student_grades ADD FOREIGN KEY (student_id) REFERENCES students(student_id);", "ALTER TABLE student_grades ADD CONSTRAINT NAME = student_id_fk...", "ALTER TABLE student grades ADD NAMED CONSTRAINT..."], answer: [0], type: "MC", exp: "ADD CONSTRAINT <name> explicitly names the constraint." },
+            { id: 63, module: "Constraints", q: "In CREATE TABLE orders with (SER_NO NUMBER UNIQUE, ORDER_ID NUMBER, STATUS VARCHAR2 CHECK...), which column gets an index implicitly?", options: ["SER_NO", "ORDER_ID", "STATUS", "PROD_ID"], answer: [0], type: "MC", exp: "PRIMARY KEY and UNIQUE constraints automatically create a unique index." },
+            { id: 64, module: "Constraints", q: "For which constraint does Oracle implicitly create a unique index?", options: ["PRIMARY KEY", "NOT NULL", "FOREIGN KEY", "CHECK"], answer: [0], type: "MC", exp: "PRIMARY KEY constraint auto-creates a unique B-Tree index." },
+            { id: 65, module: "Constraints", q: "Error 'ORA-02297: cannot disable constraint - dependencies exist'. What constraint causes this?", options: ["Foreign key Constraints", "Check constraints", "Not NULL constraints.", "Unique Constraints."], answer: [0], type: "MC", exp: "Attempting to disable a PK/Unique key referenced by active FK constraints throws ORA-02297." },
+            { id: 66, module: "Constraints", q: "Which is not a valid Oracle constraint type?", options: ["CASCADE", "UNIQUE", "CHECK", "NOT NULL"], answer: [0], type: "MC", exp: "CASCADE is an option/clause, not a constraint type." },
+            { id: 67, module: "Constraints", q: "Which constraint ensures CUSTOMER_NAME always holds a value?", options: ["NOT NULL or Primary Key", "Only Primary Key", "Unique", "Foreign Key"], answer: [0], type: "MC", exp: "Both NOT NULL and Primary Key enforce non-null values." },
+            { id: 68, module: "Constraints", q: "Which view displays columns associated with constraints on user's table?", options: ["USER_CONS_COLUMNS", "USER_CONSTRAINTS", "USER_OBJECTS", "ALL_CONSTRAINTS"], answer: [0], type: "MC", exp: "USER_CONS_COLUMNS maps constraint names to column names." },
+            { id: 69, module: "Constraints", q: "Add primary key on STUDENT_ID to empty table STUDENTS:", options: ["ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id);", "ALTER TABLE students ADD PRIMARY KEY student_id;", "ALTER TABLE students ADD CONSTRAINT PRIMARY KEY (student_id);", "ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;"], answer: [0], type: "MC", exp: "Standard ALTER TABLE ADD CONSTRAINT clause." },
+            { id: 70, module: "Constraints", q: "Which statement about CASCADE CONSTRAINTS is not true?", options: ["The CASCADE CONSTRAINTS can be used while creating the constraint to enable automatic dropping of FK", "The CASCADE CONSTRAINTS clause is used along with DROP COLUMN", "Drops all referential integrity constraints", "Drops multicolumn constraints"], answer: [0], type: "MC", exp: "CASCADE CONSTRAINTS is used during DROP TABLE / DROP COLUMN / DISABLE, not inside CREATE CONSTRAINT." },
+            { id: 71, module: "Constraints", q: "Which data dictionary view shows columns involved in constraints?", options: ["USER_CONS_COLUMNS", "USER_COLS_CONSTRAINTS", "USER_CONSTRAINTS", "USER_OBJECTS"], answer: [0], type: "MC", exp: "USER_CONS_COLUMNS gives column detail." },
+            { id: 72, module: "Constraints", q: "Which SQL defines FOREIGN KEY constraint on DEPTNO column in EMP inline?", options: ["CREATE TABLE EMP(empno NUMBER(4),ename VARCHAR2(35),deptno NUMBER(7,2) CONSTRAINT emp_deptno_fk REFERENCES dept (deptno));", "CREATE TABLE EMP... FOREIGN KEY deptno REFERENCES...", "CREATE TABLE EMP... FOREIGN KEY (deptno)...", "CREATE TABLE EMP... FOREIGN KEY CONSTRAINT..."], answer: [0], type: "MC", exp: "Inline FK specification uses: col type CONSTRAINT name REFERENCES parent_table(col)." },
+            { id: 73, module: "Constraints", q: "Which statement is used to alter constraints (enable/disable/drop)?", options: ["ALTER TABLE", "ALTER CONSTRAINT", "DROP CONSTRAINT", "ALTER OBJECT"], answer: [0], type: "MC", exp: "Constraints belong to tables, so ALTER TABLE is used." },
+            { id: 74, module: "Constraints", q: "Which statement is not correct about constraints?", options: ["Constraints make complex queries easy", "Constraints enforce rules at view level.", "Constraints enforce rules at table level.", "Constraints prevent deletion of table if dependencies exist."], answer: [0], type: "MC", exp: "Constraints enforce data integrity; they do not simplify SQL query complexity." },
+            { id: 75, module: "Constraints", q: "Which statement about NOT NULL constraints is true?", options: ["NOT NULL constraints can only be defined at the column level.", "You CANNOT add NOT NULL using ALTER TABLE", "You can modify structure of NOT NULL using ALTER TABLE", "Stored as UNIQUE constraint in dictionary"], answer: [0], type: "MC", exp: "NOT NULL cannot be declared at table-level; only column-level." },
+            { id: 76, module: "Constraints", q: "For which task issue: ALTER TABLE po_detail ENABLE CONSTRAINT po_num_pk;", options: ["to activate the previously disabled constraint on PO_NUM column", "to drop and recreate primary key", "to create new primary key", "to enable foreign key constraints dependent"], answer: [0], type: "MC", exp: "ENABLE CONSTRAINT activates a previously disabled constraint." },
+            { id: 77, module: "Constraints", q: "Which statement about constraints is true?", options: ["Constraints prevent a table with dependencies from being deleted.", "Constraints only enforce rules at table level.", "You must provide name for each constraint.", "Constraint names are not required to follow naming rules."], answer: [0], type: "MC", exp: "Parent tables cannot be dropped if child foreign keys reference them." },
+            { id: 78, module: "Constraints", q: "Which syntax turns an existing constraint on?", options: ["ALTER TABLE table_name ENABLE CONSTRAINT constraint_name;", "ALTER TABLE table_name ENABLE constraint_name;", "ALTER TABLE table_name STATUS = ENABLE CONSTRAINT constraint_name;", "ALTER TABLE table_name STATUS ENABLE CONSTRAINT constraint_name;"], answer: [0], type: "MC", exp: "Syntax: ALTER TABLE <tab> ENABLE CONSTRAINT <cname>;" },
+            { id: 79, module: "Constraints", q: "Which statement about creating constraints is true?", options: ["Constraints can be created after the table is created.", "Constraint names must start with SYS_C.", "All constraints must be defined at column level.", "Information found in VIEW_CONSTRAINTS."], answer: [0], type: "MC", exp: "Constraints can be added later using ALTER TABLE." },
+            { id: 80, module: "Constraints", q: "Which constraint can be defined ONLY at column level?", options: ["NOT NULL", "UNIQUE", "CHECK", "PRIMARY KEY"], answer: [0], type: "MC", exp: "NOT NULL must be defined inline on the column definition." },
+
+            // MODULE 5: DML (Q81 - Q100)
+            { id: 81, module: "DML", q: "A data manipulation language (DML) statement ____.", options: ["Modifies the data but not the structure of a table", "Completes a transaction on a table.", "Modifies the structure and data in a table", "Modifies the structure but not data"], answer: [0], type: "MC", exp: "DML statements (INSERT, UPDATE, DELETE) alter data rows, not schema structure." },
+            { id: 82, module: "DML", q: "Which statement regarding DML statement functionality is true?", options: ["UPDATE can update multiple columns in one table.", "DELETE can be used to delete columns.", "MERGE deletes rows that do not exist.", "UPDATE adds rows if INTO is specified."], answer: [0], type: "MC", exp: "UPDATE table SET col1=val1, col2=val2 modifies multiple columns." },
+            { id: 83, module: "DML", q: "What happens when you execute: DELETE employees;", options: ["The data in the EMPLOYEES table is deleted but not the structure.", "You get primary key violation error", "Data and structure are deleted.", "Syntax error."], answer: [0], type: "MC", exp: "DELETE removes all rows while preserving the table definition." },
+            { id: 84, module: "DML", q: "EMPLOYEES: EMPLOYEE_ID PK, FIRST_NAME, LAST_NAME. Which fails to insert?", options: ["INSERT INTO employees( first_name, last_name) VALUES( 'John', 'Smith');", "INSERT INTO employees VALUES ( '1000', 'John', NULL);", "INSERT INTO employees (employee_id) VALUES (1000);", "INSERT INTO employees (employee_id, first_name, last_name) VALUES ( 1000, 'John', ' ');"], answer: [0], type: "MC", exp: "Omitting EMPLOYEE_ID violates Primary Key NOT NULL requirement." },
+            { id: 85, module: "DML", q: "Which is NOT true regarding MERGE statement?", options: ["A MERGE statement replaces the complete data of one table with that of another.", "MERGE is used to merge data of one table with another.", "MERGE can insert new rows.", "MERGE can update existing rows."], answer: [0], type: "MC", exp: "MERGE conditionally updates or inserts rows (UPSERT); it does not replace the entire target table." },
+            { id: 86, module: "DML", q: "With SQL, how can you insert 'Olsen' as 'LastName' in 'Persons'?", options: ["INSERT INTO Persons (LastName) VALUES ('Olsen')", "INSERT INTO Persons ('Olsen') as LastName", "INSERT LastName('Olsen') INTO Persons", "None of the above"], answer: [0], type: "MC", exp: "INSERT INTO table (col) VALUES (val) is standard DML." },
+            { id: 87, module: "DML", q: "Change 'Hansen' into 'Nilsen' in 'LastName' column in Persons table:", options: ["UPDATE Persons SET LastName='Nilsen' WHERE LastName='Hansen'", "MODIFY Persons SET LastName='Hansen' INTO LastName='Nilsen'", "UPDATE Persons SET LastName='Hansen' INTO LastName='Nilsen'", "MODIFY Persons SET LastName='Nilsen' WHERE LastName='Hansen'"], answer: [0], type: "MC", exp: "UPDATE table SET col=newval WHERE col=oldval." },
+            { id: 88, module: "DML", q: "Delete records where 'FirstName' is 'Peter' in Persons:", options: ["DELETE FROM Persons WHERE FirstName = 'Peter'", "DELETE * FROM Persons WHERE FirstName = 'Peter'", "DELETE FirstName FROM Persons WHERE FirstName = 'Peter'", "DELETE 'Peter' FROM Persons"], answer: [0], type: "MC", exp: "DELETE FROM table WHERE condition." },
+            { id: 89, module: "DML", q: "Insert only Sales Reps (job_id = 'SA_REP') from employees into sales_reps:", options: ["INSERT INTO sales_reps(id, name, salary, commission_pct) SELECT employee_id, last_name, salary, commission_pct FROM employees WHERE job_id = 'SA_REP';", "INSERT INTO sales_reps(...) VALUES SELECT...", "INSERT INTO sales_reps(...) SELECT ... FROM employees;", "INSERT INTO sales_reps(...) SELECT last_name, employee_id..."], answer: [0], type: "MC", exp: "INSERT INTO ... SELECT ... WHERE is correct syntax." },
+            { id: 90, module: "DML", q: "Which of the following is NOT a valid usage of a Merge statement?", options: ["Insert as well as update each row in a table simultaneously.", "Conditionally update or insert data into database", "Perform UPDATE if row exists, INSERT if new", "Increase performance and ease of use"], answer: [0], type: "MC", exp: "MERGE evaluates row conditions to perform either INSERT or UPDATE per row, not both simultaneously on the same record." },
+            { id: 91, module: "DML", q: "Output of: UPDATE employees a SET job_id = (SELECT job_id FROM new_employees b WHERE a.employee_id = b.employee_id);", options: ["Updates job_id for all records: match sets job_id, no match updates job_id as NULL.", "Returns error", "Updates only matching records", "Retains existing job_id for non-matching"], answer: [0], type: "MC", exp: "Correlated update without a WHERE clause in outer statement sets non-matching outer rows to NULL." },
+            { id: 92, module: "DML", q: "Which of the following is NOT a DML statement?", options: ["COMMIT", "MERGE", "UPDATE", "DELETE"], answer: [0], type: "MC", exp: "COMMIT is a TCL (Transaction Control Language) statement." },
+            { id: 93, module: "DML", q: "INSERT INTO departments (department_id, department_name, manager_id) VALUES (300, 'Engineering', DEFAULT);", options: ["Inserts record with (300, 'Engineering', default_val_or_null).", "Inserts string 'DEFAULT'", "Manager_id becomes literal", "Returns error"], answer: [0], type: "MC", exp: "DEFAULT keyword inserts default column value or NULL." },
+            { id: 94, module: "DML", q: "Synchronize CUSTOMER and PROSPECT tables (insert missing, update existing):", options: ["MERGE", "INSERT", "UPDATE", "Cannot perform with one DML"], answer: [0], type: "MC", exp: "MERGE statement performs UPSERT operations in a single atomic SQL statement." },
+            { id: 95, module: "DML", q: "Enter phone numbers for existing 100 employee records:", options: ["UPDATE", "MERGE", "INSERT", "ADD"], answer: [0], type: "MC", exp: "Modifying existing rows requires UPDATE." },
+            { id: 96, module: "DML", q: "DELETE employee_id, salary FROM employees WHERE dept_id = 90; Why does it fail?", options: ["You cannot specify column names in DELETE clause.", "No row with dept_id 90.", "Cannot delete JOB_ID NOT NULL column.", "Cannot delete PK."], answer: [0], type: "MC", exp: "DELETE operates on full rows; column lists are invalid in DELETE syntax." },
+            { id: 97, module: "DML", q: "EMPLOYEES: EMPLOYEE_ID PK, FIRST_NAME, LAST_NAME. Which inserts valid row?", options: ["INSERT INTO employees VALUES ('1000','John',NULL);", "INSERT INTO employees VALUES ( NULL, 'John','Smith');", "INSERT INTO employees( first_name, last_name) VALUES('John','Smith');", "INSERT INTO employees(first_name,last_name, employee_id) VALUES ( 1000, 'John','Smith');"], answer: [0], type: "MC", exp: "PK '1000' auto-converts string to number, FIRST_NAME 'John', LAST_NAME NULL." },
+            { id: 98, module: "DML", q: "Delete classes that do NOT have an instructor assigned (instructor_id IS NULL):", options: ["DELETE FROM class WHERE instructor_id IS NULL;", "DELETE class_id... FROM class...", "DELETE FROM class WHERE instructor_id NOT IN...", "DELETE FROM instructor NATURAL JOIN..."], answer: [0], type: "MC", exp: "DELETE FROM class WHERE instructor_id IS NULL." },
+            { id: 99, module: "DML", q: "Increase list_price and cost by 5.5% for supplier_id = 105:", options: ["UPDATE product SET list_price = list_price * 1.055, cost = cost * 1.055 WHERE supplier_id = 105;", "UPDATE product SET list_price = list_price * 1.055 SET cost...", "UPDATE product...", "UPDATE product SET list_price = list_price + ... LIKE 'Global..."], answer: [0], type: "MC", exp: "Comma separates column assignments in SET clause." },
+            { id: 100, module: "DML", q: "MERGE INTO event e USING (...) ON (e.event_id = n.event_id) WHEN MATCHED THEN UPDATE SET e.event_type_id = n.event_type_id... Error cause?", options: ["The UPDATE portion is invalid because updated columns cannot be in ON match condition.", "Subquery cannot be used in USING", "Table aliases cannot be used", "ON clause invalid"], answer: [0], type: "MC", exp: "In Oracle MERGE, columns referenced in the ON (...) clause cannot be updated in the WHEN MATCHED UPDATE clause." },
+
+            // MODULE 6: Single Row Functions (Q101 - Q120)
+            { id: 101, module: "Single Row Functions", q: "The NVL function accomplishes which task?", options: ["Enables you to specify alternate output for NULL column values.", "Assists in distribution across columns.", "Alternate output for non-NULL values.", "Nullifies column output."], answer: [0], type: "MC", exp: "NVL(expr1, expr2) replaces NULL in expr1 with expr2." },
+            { id: 102, module: "Single Row Functions", q: "Which SELECT statement shows 'elloworld' from string 'HelloWorld'?", options: ["SELECT LOWER (TRIM ('H' FROM 'HelloWorld')) FROM dual;", "SELECT SUBSTR ('HelloWorld', 1) FROM dual;", "SELECT INITCAP (TRIM ('HelloWorld', 1, 1)) FROM dual;", "SELECT LOWER (SUBSTR ('HelloWorld', 1, 1) FROM dual;"], answer: [0], type: "MC", exp: "TRIM('H' FROM 'HelloWorld') leaves 'elloWorld', LOWER converts to 'elloworld'." },
+            { id: 103, module: "Single Row Functions", q: "Displays '01-JAN-02' when ENROLL_DATE is '01-JUL-01':", options: ["SELECT ROUND (enroll_date, 'YEAR') FROM student;", "SELECT ROUND (enroll_date, 'DAY') FROM student;", "SELECT ROUND (enroll_date, 'MONTH') FROM student;", "SELECT ROUND (TO_CHAR(enroll_date, 'YYYY')) FROM student;"], answer: [0], type: "MC", exp: "Rounding date '01-JUL-01' by 'YEAR' rounds up to the next year start '01-JAN-02'." },
+            { id: 104, module: "Single Row Functions", q: "Which function restricts department names to those containing 3 characters?", options: ["LENGTH", "REPLACE", "SUBSTR", "RPAD"], answer: [0], type: "MC", exp: "WHERE LENGTH(dept_name) = 3." },
+            { id: 105, module: "Single Row Functions", q: "Which statement concerning SQL functions is true?", options: ["Character functions can return character or number values.", "Conversion functions convert column definition.", "Single-row functions used only in SELECT/WHERE.", "All date functions return DATE."], answer: [0], type: "MC", exp: "Character functions like LENGTH return numbers, while UPPER returns characters." },
+            { id: 106, module: "Single Row Functions", q: "Evaluate: SELECT ROUND(45.953, -1), TRUNC(45.936, 2) FROM dual;", options: ["50 and 45.93", "46 and 45", "46 and 45.93", "50 and 45.9"], answer: [0], type: "MC", exp: "ROUND(45.953, -1) rounds to nearest ten (50). TRUNC(45.936, 2) truncates to 2 decimal places (45.93)." },
+            { id: 107, module: "Single Row Functions", q: "Which of the following is NOT a number function?", options: ["TO_NUMBER", "TRUNC", "SQRT", "ROUND"], answer: [0], type: "MC", exp: "TO_NUMBER is a Conversion function." },
+            { id: 108, module: "Single Row Functions", q: "Single row function similar to IF-THEN-ELSE statement:", options: ["DECODE", "SQRT", "NEW_TIME", "ROWIDTOCHAR"], answer: [0], type: "MC", exp: "DECODE(col, search1, result1, default) acts as an IF-THEN-ELSE evaluator." },
+            { id: 109, module: "Single Row Functions", q: "Which is NOT an attribute of single row functions?", options: ["cannot be nested", "manipulate data items", "act on each row returned", "return one result per row"], answer: [0], type: "MC", exp: "Single row functions CAN be deeply nested." },
+            { id: 110, module: "Single Row Functions", q: "Which SQL statement returns a numeric value?", options: ["SELECT sysdate-hire_date FROM EMP;", "SELECT ADD_MONTHS(MAX(hire_Date), 6) FROM EMP;", "SELECT ROUND(hire_date) FROM EMP;", "SELECT TO_NUMBER(hire_date + 7) FROM EMP;"], answer: [0], type: "MC", exp: "Subtracting two DATE values yields the difference in days as a NUMBER." },
+            { id: 111, module: "Single Row Functions", q: "Which is NOT a type of Single Row functions available in SQL?", options: ["calendar", "string", "character", "Numeric"], answer: [0], type: "MC", exp: "SQL provides character, numeric, date, and conversion functions. 'Calendar' is not a standard function category." },
+            { id: 112, module: "Single Row Functions", q: "Calculate 12*salary*commission_pct displaying value for ALL employees:", options: ["SELECT last_name, 12*salary*(nvl(commission_pct,0)) FROM emp;", "SELECT last_name, 12*salary*commison_pct FROM emp;", "SELECT last_name, 12*salary* (commission_pct,0) FROM emp;", "SELECT last_name, 12*salary*(decode(commission_pct,0)) FROM emp;"], answer: [0], type: "MC", exp: "NVL(commission_pct, 0) handles NULL values." },
+            { id: 113, module: "Single Row Functions", q: "SELECT LPAD(salary, 10, *) FROM EMP WHERE EMP_ID = 1001; (Salary=17000)", options: ["An error statement", "17000.00", "17000*****", "*****17000"], answer: [0], type: "MC", exp: "The asterisk literal '*' must be enclosed in single quotes. LPAD(salary, 10, '*') syntax error!" },
+            { id: 114, module: "Single Row Functions", q: "Display name and annual salary multiplied by commission_pct (0 if NULL):", options: ["SELECT last_name, (salary * 12) * NVL(commission_pct, 0) FROM EMPLOYEES;", "SELECT last_name, (salary * 12) * commission_pct FROM EMPLOYEES;", "SELECT last_name, (salary * 12) * IFNULL(commission_pct,0) FROM EMPLOYEES;", "SELECT last_name, (salary * 12) * NVL2(commission_pct, 0) FROM EMPLOYEES;"], answer: [0], type: "MC", exp: "NVL(commission_pct, 0) returns 0 if commission_pct is NULL." },
+            { id: 115, module: "Single Row Functions", q: "Display system date in format 'Monday, 01 June, 2001':", options: ["SELECT TO_CHAR(SYSDATE, 'FMDay, DD Month, YYYY') FROM dual;", "SELECT TO_DATE(SYSDATE, 'FMDAY, DD Month, YYYY') FROM dual;", "SELECT TO_CHAR(SYSDATE, 'FMDD, DY Month, 'YYY') FROM dual;", "SELECT TO_CHAR(SYSDATE, 'FMDY, DDD Month, YYYY') FROM dual;"], answer: [0], type: "MC", exp: "TO_CHAR with format 'FMDay, DD Month, YYYY' generates full day and month string." },
+            { id: 116, module: "Single Row Functions", q: "Evaluate: SELECT ROUND(TRUNC(MOD(1600, 10), -1), 2) FROM dual;", options: ["0", "1", "0.00", "An error statement"], answer: [0], type: "MC", exp: "MOD(1600, 10) = 0. TRUNC(0, -1) = 0. ROUND(0, 2) = 0." },
+            { id: 117, module: "Single Row Functions", q: "Which SELECT statement will NOT display 2000 in format '$2,000.00'?", options: ["SELECT TO_CHAR (2000, '$2,000.00') FROM dual;", "SELECT TO_CHAR (2000, '$0,000.00') FROM dual;", "SELECT TO_CHAR (2000, '$9,999.00') FROM dual;", "SELECT TO_CHAR (2000, '$9,999.99') FROM dual;"], answer: [0], type: "MC", exp: "Format mask uses '9' or '0' digit placeholders, NOT actual digits like '2'." },
+            { id: 118, module: "Single Row Functions", q: "Which statement is incorrect about SQL functions?", options: ["NVL2 returns the first non-null expression in the expression list.", "DECODE translates an expression after comparing.", "TRIM trims heading or trailing characters.", "NULLIF compares two expressions."], answer: [0], type: "MC", exp: "COALESCE returns the first non-null expression. NVL2(expr1, expr2, expr3) returns expr2 if expr1 is not null, else expr3." },
+            { id: 119, module: "Single Row Functions", q: "Which is a character manipulation function?", options: ["TRIM", "TRUNC", "TO_DATE", "MOD"], answer: [0], type: "MC", exp: "TRIM manipulates string character data." },
+            { id: 120, module: "Single Row Functions", q: "Which task can you perform by using the TO_CHAR function?", options: ["Convert number 10 to string '10'", "Convert 10 to 'TEN'", "Convert '10' to 10", "Convert 'TEN' to 10"], answer: [0], type: "MC", exp: "TO_CHAR converts numbers or dates into character string representation." },
+
+            // MODULE 7: Group Functions (Q121 - Q140)
+            { id: 121, module: "Group Functions", q: "Which statement is true about WHERE and HAVING clauses?", options: ["A HAVING clause can be used to restrict both rows and groups.", "A HAVING clause restricts groups only.", "WHERE clause restricts groups only.", "WHERE clause restricts both rows and groups."], answer: [0], type: "MC", exp: "HAVING filters groups created by GROUP BY, but can technically also filter rows before/after grouping." },
+            { id: 122, module: "Group Functions", q: "EMPLOYEES: EMP_ID, LAST_NAME, FIRST_NAME, DEPT_ID. Number of different departments with last_name 'Smith':", options: ["SELECT COUNT(DISTINCT dept_id) FROM employees WHERE last_name='Smith';", "SELECT DISTINCT(COUNT(dept_id)) FROM employees WHERE last_name='Smith';", "SELECT COUNT(*) FROM employees WHERE last_name='Smith';", "SELECT COUNT (dept_id) FROM employees WHERE last_name='Smith';"], answer: [0], type: "MC", exp: "COUNT(DISTINCT dept_id) counts unique department numbers." },
+            { id: 123, module: "Group Functions", q: "What is true of using group functions on columns containing NULL values?", options: ["Group functions on columns ignore NULL values.", "Group functions on dates include NULL values.", "Cannot be accurately used.", "Group functions on numbers include NULL values."], answer: [0], type: "MC", exp: "All aggregate group functions (except COUNT(*)) automatically ignore NULLs." },
+            { id: 124, module: "Group Functions", q: "STUDENT_GRADES: STUDENT_ID, SEMESTER_END, GPA. Find highest GPA per semester:", options: ["SELECT MAX(gpa) FROM student_grades WHERE gpa IS NOT NULL GROUP BY semester_end;", "SELECT (gpa) FROM student_grades GROUP BY semester_end...", "SELECT MAX(gpa) FROM student_grades WHERE gpa IS NOT NULL", "SELECT MAX(gpa) GROUP BY semester_end..."], answer: [0], type: "MC", exp: "SELECT MAX(gpa) FROM tab GROUP BY semester_end." },
+            { id: 125, module: "Group Functions", q: "Which data types are compatible for applying MIN, MAX group functions?", options: ["All of the above", "Numeric", "Date", "Character"], answer: [0], type: "MC", exp: "MIN and MAX work across Numbers, Dates, and Character data types." },
+            { id: 126, module: "Group Functions", q: "Which of the following is NOT a valid variation of the COUNT function?", options: ["COUNT(expr1, expr2)", "COUNT(*)", "COUNT(DISTINCT expr)", "COUNT(expr)"], answer: [0], type: "MC", exp: "COUNT accepts only a single expression parameter or *." },
+            { id: 127, module: "Group Functions", q: "Calculate Average commission percentage from employees treating NULLs as zeros:", options: ["SELECT AVG(NVL(commission_pct, 0)) FROM employees", "SELECT NULLIF(AVG(commission_pct), 0) FROM employees", "SELECT AVG(NULLIF(commission_pct, 0)) FROM employees", "SELECT NVL(AVG(commission_pct), 0) FROM employees"], answer: [0], type: "MC", exp: "NVL converts NULLs to 0 prior to AVG calculation so total count includes all rows." },
+            { id: 128, module: "Group Functions", q: "Which of the following statements will return an error?", options: ["SELECT job_id, AVG(salary) FROM employees GROUP BY department_id", "SELECT AVG(salary) FROM employees GROUP BY department_id", "SELECT department_id, AVG(salary) FROM employees GROUP BY department_id", "SELECT AVG(salary), job_id FROM employees GROUP BY department_id, job_id"], answer: [0], type: "MC", exp: "Column job_id is in SELECT list but omitted from GROUP BY clause." },
+            { id: 129, module: "Group Functions", q: "Which of the following statements is NOT correct?", options: ["You can use group functions in the WHERE clause", "You cannot use WHERE clause to restrict groups", "You cannot use group functions in WHERE clause", "You use HAVING clause to restrict groups"], answer: [0], type: "MC", exp: "Group functions CANNOT be evaluated in a WHERE clause." },
+            { id: 130, module: "Group Functions", q: "Displays the number of distinct department values in EMPLOYEES:", options: ["SELECT COUNT(DISTINCT department_id) FROM employees", "SELECT COUNT(department_id) FROM employees", "SELECT DISTINCT COUNT(department_id) FROM employees", "SELECT DISTINCT department_id FROM employees;"], answer: [0], type: "MC", exp: "COUNT(DISTINCT col) counts distinct non-null occurrences." },
+            { id: 131, module: "Group Functions", q: "Output of: SELECT department_id, AVG(salary) FROM employees WHERE AVG(salary) > 8000 GROUP BY department_id;", options: ["The statement will return an error", "Displays department_id and average salary", "Displays departments with avg > 8000", "Displays all average salaries"], answer: [0], type: "MC", exp: "AVG(salary) inside WHERE clause raises 'ORA-00934: group function is not allowed here'." },
+            { id: 132, module: "Group Functions", q: "Which aggregate function is valid on START_DATE (DATE column)?", options: ["MIN(start_date)", "AVG(start_date)", "MAXIMUM(start_date)", "SUM(start_date)"], answer: [0], type: "MC", exp: "MIN/MAX are valid on dates. SUM/AVG require numeric types." },
+            { id: 133, module: "Group Functions", q: "What is True about: SELECT MAX(AVG(salary)) FROM employees GROUP BY department_id;", options: ["It will display the maximum of the average salaries for each department", "It will return an error", "Returns max average for each department row", "Returns error due to group by"], answer: [0], type: "MC", exp: "Group functions can be nested up to 2 levels deep." },
+            { id: 134, module: "Group Functions", q: "MARKS: STD_ID, SUBJ1, SUBJ2. Result of: SELECT subj1+subj2 total_marks, std_id FROM marks WHERE subj1 > AVG(subj1) AND subj2 > AVG(subj2) ORDER BY total_marks;", options: ["The statement returns an error at the WHERE clause.", "Executes successfully.", "Returns error at SELECT.", "Returns error at ORDER BY."], answer: [0], type: "MC", exp: "Cannot use aggregate functions AVG() directly inside WHERE clause." },
+            { id: 135, module: "Group Functions", q: "Which statement is true about aggregate functions?", options: ["You can mix single row columns with aggregate functions in SELECT list by grouping on single row columns.", "Can use aggregate functions only in SELECT and WHERE.", "Can group whole table as one group only.", "Can use in any clause."], answer: [0], type: "MC", exp: "Non-aggregated columns in SELECT must be included in the GROUP BY clause." },
+            { id: 136, module: "Group Functions", q: "Which clause should you use to exclude group results?", options: ["HAVING", "RESTRICT", "WHERE", "GROUP BY"], answer: [0], type: "MC", exp: "HAVING clause filters aggregated group results." },
+            { id: 137, module: "Group Functions", q: "In a SELECT statement with WHERE clause, where is GROUP BY placed?", options: ["After the WHERE clause", "Before the WHERE clause", "After ORDER BY clause", "Immediately after SELECT clause"], answer: [0], type: "MC", exp: "Order of execution/syntax: FROM -> WHERE -> GROUP BY -> HAVING -> ORDER BY." },
+            { id: 138, module: "Group Functions", q: "Provide report of number of different event types at each location:", options: ["SELECT location_id, COUNT(DISTINCT event_type) FROM event GROUP BY location_id;", "SELECT COUNT(*), DISTINCT(location_id) FROM event;", "SELECT DISTINCT (event_type) FROM event GROUP BY location_id;", "SELECT UNIQUE(location_id)..."], answer: [0], type: "MC", exp: "Counts unique event_type per location_id." },
+            { id: 139, module: "Group Functions", q: "Which statement about clause evaluation order in SELECT is true?", options: ["The Oracle Server will evaluate a WHERE clause before a GROUP BY clause.", "ORDER BY evaluated before WHERE.", "ORDER BY evaluated before HAVING.", "HAVING evaluated before WHERE."], answer: [0], type: "MC", exp: "WHERE filters raw rows before GROUP BY aggregates them." },
+            { id: 140, module: "Group Functions", q: "Calculate total of all salaries in accounting department:", options: ["SUM", "COUNT", "MAX", "MIN"], answer: [0], type: "MC", exp: "SUM computes numeric totals." },
+
+            // MODULE 8: SQL Joins (Q141 - Q160)
+            { id: 141, module: "SQL Joins", q: "In which case would you use a FULL OUTER JOIN?", options: ["You want all unmatched data from both tables.", "Unmatched data from one table.", "Both tables have NULL values.", "All matched data from both tables."], answer: [0], type: "MC", exp: "FULL OUTER JOIN yields matched rows plus unmatched rows from both left and right tables." },
+            { id: 142, module: "SQL Joins", q: "Output of: SELECT * FROM employees, departments;", options: ["It will result in a Cartesian product as a joining condition is not specified", "Displays rows sequentially", "Auto joins on department_id", "Returns error"], answer: [0], type: "MC", exp: "Omitting join conditions results in Cartesian product (M x N rows)." },
+            { id: 143, module: "SQL Joins", q: "Which query produces identical output to: SELECT last_name, department_name FROM employees CROSS JOIN departments;", options: ["SELECT last_name, department_name FROM employees e, departments d;", "SELECT last_name, department_name FROM employees e, departments d WHERE e.depatment_id (+) = d.department_id (+);", "SELECT last_name, department_name FROM employees JOIN departments USING (department_id)", "SELECT last_name, department_name FROM employees e, departments d WHERE e.depatment_id = d.department_id;"], answer: [0], type: "MC", exp: "Comma separated FROM clause without WHERE produces a Cartesian product (CROSS JOIN)." },
+            { id: 144, module: "SQL Joins", q: "Which of the following is an outer join symbol in Oracle legacy syntax?", options: ["(+)", "[+]", "{+}", "+"], answer: [0], type: "MC", exp: "Oracle legacy outer join operator is (+)." },
+            { id: 145, module: "SQL Joins", q: "Output of: SELECT e.last_name, e.department_id, d.department_name FROM employees e, departments d WHERE e.department_id(+) = d.department_id;", options: ["Displays employee last names, department IDs, and department names for all employees and also department names of departments with no employees.", "Displays matched rows only", "Displays all employees regardless of dept", "Displays employee details and department details"], answer: [0], type: "MC", exp: "The (+) on employee table makes this a RIGHT OUTER JOIN displaying all departments." },
+            { id: 146, module: "SQL Joins", q: "Which join type was NOT available in Oracle versions 8i and prior?", options: ["Full Outer Join", "Self Join", "Left Outer Join", "Right Outer Join"], answer: [0], type: "MC", exp: "ANSI SQL-92 FULL OUTER JOIN syntax was introduced in Oracle 9i." },
+            { id: 147, module: "SQL Joins", q: "Which statement about table aliases and prefixes in joins is NOT valid?", options: ["Table prefixes must be used when joining more than three tables.", "We can simplify queries using aliases.", "Prefixes unambiguously identify duplicate columns.", "Improve performance using prefixes."], answer: [0], type: "MC", exp: "Table prefixes are required only to disambiguate identical column names, not mandated by table count." },
+            { id: 148, module: "SQL Joins", q: "Correct way of using a Natural Join:", options: ["SELECT department_id, department_name, location_id, city FROM departments NATURAL JOIN locations;", "SELECT ... NATURAL JOIN locations using (l.location_id);", "SELECT ... NATURAL JOIN locations on (location_id);", "SELECT ... NATURAL JOIN locations WHERE d.location_id = l.location_id"], answer: [0], type: "MC", exp: "NATURAL JOIN automatically matches all identical columns; USING or ON clauses cannot be added to NATURAL JOIN." },
+            { id: 149, module: "SQL Joins", q: "Which statement is NOT true about joins?", options: ["Natural join and using clause can be used together.", "ON clause specifies arbitrary conditions.", "USING matches specific column name.", "Natural join errors on same column name with different datatypes."], answer: [0], type: "MC", exp: "NATURAL JOIN and USING clause are mutually exclusive." },
+            { id: 150, module: "SQL Joins", q: "Produces name, department_name, city for employees earning > 10000:", options: ["SELECT emp_name, department_name, city FROM employees e JOIN departments d ON (e.department_id = d.department_id) JOIN locations l ON (d.location_id = l.location_id) WHERE salary > 10000;", "SELECT ... FROM employees e, departments d, locations l WHERE salary > 10000;", "SELECT ... JOIN USING (department_id)...", "SELECT ... NATURAL JOIN..."], answer: [0], type: "MC", exp: "Explicit JOIN ... ON syntax cleanly specifies join conditions." },
+            { id: 151, module: "SQL Joins", q: "Retrieve all employees whether or not they have matching departments in departments table:", options: ["SELECT last_name, department_name FROM employees e LEFT OUTER JOIN departments d ON (e.department_id = d.department_id);", "SELECT last_name, department_name FROM employees , departments(+);", "SELECT last_name, department_name FROM employees JOIN departments (+);", "SELECT last_name, department_name FROM employees e RIGHT OUTER JOIN departments d ON..."], answer: [0], type: "MC", exp: "LEFT OUTER JOIN returns all rows from left table (employees)." },
+            { id: 152, module: "SQL Joins", q: "Which is NOT true regarding outer joins?", options: ["You cannot perform an outer join while joining more than 2 tables", "Use (+) on table missing rows.", "Use outer join to see rows that do not meet join condition.", "Cannot link outer join condition with OR."], answer: [0], type: "MC", exp: "Outer joins can be chained across any number of tables." },
+            { id: 153, module: "SQL Joins", q: "Which join is also called an Inner join?", options: ["Equi Join", "Self Join", "Outer Join", "Non-Equi Join"], answer: [0], type: "MC", exp: "An Equi Join based on equality condition (=) is an Inner Join." },
+            { id: 154, module: "SQL Joins", q: "What is true about joining tables through an equijoin?", options: ["You can join n tables by specifying a minimum of n-1 join conditions.", "Specify condition in SELECT.", "Join max 2 columns.", "Join max 2 tables."], answer: [0], type: "MC", exp: "To prevent Cartesian products, N tables require at least N-1 join conditions." },
+            { id: 155, module: "SQL Joins", q: "EMPLOYEES, DEPARTMENTS, TAX (MIN_SALARY, MAX_SALARY, TAX_PERCENT). When use non-equijoin?", options: ["To find the tax percentage for each of the employees", "To find number of employees in Admin earning < 4000.", "To list manager names.", "To find employees not working with Smith."], answer: [0], type: "MC", exp: "Matching employee salary between MIN_SALARY and MAX_SALARY requires a non-equijoin (BETWEEN / <= / >=)." },
+            { id: 156, module: "SQL Joins", q: "Minimum conditions in WHERE clause for a four-table join to avoid Cartesian product:", options: ["3", "2", "4", "8"], answer: [0], type: "MC", exp: "For 4 tables: N-1 = 4 - 1 = 3 conditions." },
+            { id: 157, module: "SQL Joins", q: "In which case would you use an outer join?", options: ["The tables being joined have both matched and unmatched data.", "Tables have NOT NULL columns.", "Tables have only unmatched data.", "Tables have only matched data."], answer: [0], type: "MC", exp: "Outer joins retrieve matching rows plus unmatched rows." },
+            { id: 158, module: "SQL Joins", q: "When will a Cartesian product occur?", options: ["All rows in the first table are joined to all rows in the second table (or join condition omitted)", "Two tables joined on columns with different names.", "Invalid join condition.", "All of the above."], answer: [0], type: "MC", exp: "A Cartesian product joins every row of table 1 with every row of table 2." },
+            { id: 159, module: "SQL Joins", q: "Which of the following is NOT a valid type of Join?", options: ["External Join", "Outer Join", "Inner Join", "Natural join"], answer: [0], type: "MC", exp: "'External Join' is not a valid SQL join term." },
+            { id: 160, module: "SQL Joins", q: "Type of join in: SELECT e.employee_id, e.last_name, d.department_id FROM employees e, departments d WHERE e.department_id = d.department_id;", options: ["Equi join", "Self Join", "Non-equi Join", "Left Outer join"], answer: [0], type: "MC", exp: "Equality operator '=' used between foreign key and primary key is an Equi join." },
+
+            // MODULE 9: Sub Queries (Q161 - Q180)
+            { id: 161, module: "Sub Queries", q: "SELECT employee_id, name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM employee WHERE department_id = 30 AND job = 'CLERK'); What happens if inner query returns NULL?", options: ["No rows would be selected from the EMPLOYEE table.", "Syntax error.", "Only rows with NULL employee_id returned.", "All rows displayed."], answer: [0], type: "MC", exp: "NOT IN against a list containing NULL always evaluates to FALSE or UNKNOWN, returning zero rows." },
+            { id: 162, module: "Sub Queries", q: "In which clause a subquery CANNOT be used?", options: ["in the GROUP BY clause of a SELECT statement", "in FROM clause", "in SET clause of UPDATE", "in WHERE clause"], answer: [0], type: "MC", exp: "Subqueries cannot be placed in the GROUP BY clause." },
+            { id: 163, module: "Sub Queries", q: "Which best describes an inline view?", options: ["a subquery that is part of the FROM clause of another query", "subquery containing ORDER BY", "view with group functions", "a schema object"], answer: [0], type: "MC", exp: "An inline view is a subquery in the FROM clause." },
+            { id: 164, module: "Sub Queries", q: "Which statement about subqueries is true?", options: ["A subquery can retrieve zero or more rows.", "Subquery should retrieve only one row.", "Cannot be nested > 2 levels.", "Used only in SELECT query statements."], answer: [0], type: "MC", exp: "Subqueries can return 0, 1, or multiple rows depending on query." },
+            { id: 165, module: "Sub Queries", q: "Displays employees with same job_id as 'Haas' and earn > 10000:", options: ["SELECT last_name, job_id FROM employees WHERE job_id IN (SELECT job_id FROM employees WHERE last_name = 'Haas') AND salary > 10000;", "SELECT last_name, job_id FROM employees WHERE last_name = 'Haas' AND salary >10000", "SELECT ... WHERE job_id IN (SELECT job_id FROM employees WHERE Salary > 10000)...", "SELECT ... WHERE job_id = (SELECT job_id FROM employees WHERE last_name = 'Haas' AND salary > 10000);"], answer: [0], type: "MC", exp: "Inner query selects job_id of Haas, outer query checks salary > 10000." },
+            { id: 166, module: "Sub Queries", q: "__________ is used to retrieve data from one or more tables if there is no relation between tables.", options: ["Sub query", "Joins", "Both", "None"], answer: [0], type: "MC", exp: "Subqueries allow fetching data indirectly without explicit join key relationship." },
+            { id: 167, module: "Sub Queries", q: "A subquery can be used to _________.", options: ["Retrieve data based on an unknown condition", "Create groups of data", "Convert data to different format", "Sort data in specific order"], answer: [0], type: "MC", exp: "Subqueries compute values needed for outer query filters dynamically." },
+            { id: 168, module: "Sub Queries", q: "Which subquery will not work?", options: ["SELECT * FROM employees where salary > (SELECT MIN(salary) FROM employees GROUP BY department_id)", "SELECT distinct department_id FROM employees Where salary > ANY (SELECT AVG(salary)...)", "SELECT last_name FROM employees Where salary > ANY (SELECT MAX(salary)...)", "SELECT department_id FROM employees WHERE SALARY > ALL (SELECT AVG(salary)...)"], answer: [0], type: "MC", exp: "Inner query returns multiple rows (one per department), so single-row operator '>' fails without ANY/ALL." },
+            { id: 169, module: "Sub Queries", q: "What is the use of LEVEL pseudocolumn?", options: ["It is used to display the level of a row in the hierarchy", "Starting node indicator", "Level output of query", "None"], answer: [0], type: "MC", exp: "LEVEL returns integer tree-depth level in CONNECT BY hierarchical queries." },
+            { id: 170, module: "Sub Queries", q: "Top-down tree hierarchy query starting with 'King':", options: ["SELECT employee_id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY PRIOR employee_id = manager_id ;", "SELECT ... START WITH last_name = 'King' CONNECT BY PRIOR manager_id = employee_id;", "SELECT ... CONNECT BY PRIOR employee_id TOP_DOWN;", "SELECT ... CONNECT BY TOP_DOWN..."], answer: [0], type: "MC", exp: "Top-down hierarchy: CONNECT BY PRIOR employee_id = manager_id." },
+            { id: 171, module: "Sub Queries", q: "Output of: SELECT last_name, job_id, salary FROM employees WHERE job_id = (SELECT job_id FROM employees WHERE employee_id = 141) AND salary > (SELECT salary FROM employees WHERE employee_id = 143);", options: ["Display employees whose job ID is the same as that of employee 141 and whose salary is greater than that of employee 143.", "Same as 141 or 143", "Same as 141 and 143", "Same as 141 or salary > 143"], answer: [0], type: "MC", exp: "First subquery gets job_id of 141; second gets salary of 143." },
+            { id: 172, module: "Sub Queries", q: "Which statement regarding subqueries is true?", options: ["Subqueries can return multiple columns.", "Subquery cannot reference table not in outer FROM.", "Must be placed on right side of comparison operator.", "Cannot be nested up to 3 levels."], answer: [0], type: "MC", exp: "Multiple-column subqueries (pairwise/non-pairwise) return multiple columns." },
+            { id: 173, module: "Sub Queries", q: "Which of the following is NOT a multiple-row comparison operator?", options: ["EACH", "ANY", "IN", "ALL"], answer: [0], type: "MC", exp: "Multiple-row operators are IN, ANY, ALL, EXISTS. 'EACH' is not an operator." },
+            { id: 174, module: "Sub Queries", q: "SELECT product_id, product_name, price FROM product WHERE supplier_id IN (SELECT supplier_id FROM product WHERE price > 120 OR qty_in_stock > 100); Result displayed?", options: ["The PRODUCT_ID, PRODUCT_NAME, and PRICE of products supplied by a supplier with products priced > 120 or qty > 100", "Products priced > 120 or qty > 100", "Products priced > 120 and qty > 100", "Products priced > 120 or qty < 100"], answer: [0], type: "MC", exp: "Inner query finds matching supplier_ids; outer displays all products from those suppliers." },
+            { id: 175, module: "Sub Queries", q: "A subquery can be used to _________.", options: ["Retrieve data based on an unknown condition", "Sort data", "Create groups", "Convert format"], answer: [0], type: "MC", exp: "Subqueries supply unknown/dynamic comparison values." },
+            { id: 176, module: "Sub Queries", q: "Which statement about subqueries is NOT true?", options: ["A single row subquery can retrieve only one column and one row.", "Multiple row subquery can retrieve multiple rows/columns.", "Multiple row subquery compared using > operator.", "Single row subquery can retrieve one row but many columns."], answer: [0], type: "MC", exp: "Single row subqueries can retrieve multiple columns if comparing column tuple (a, b) = (SELECT x, y...)." },
+            { id: 177, module: "Sub Queries", q: "Multiple-row subquery defined in WHERE clause with operator '='. Execution result?", options: ["The main query fails because multiple-row subquery cannot be used with single-row operator '='.", "Executes with last value.", "Executes with all values.", "Executes with first value."], answer: [0], type: "MC", exp: "Using '=' with a multi-row subquery throws ORA-01427: single-row subquery returns more than one row." },
+            { id: 178, module: "Sub Queries", q: "Which operator can be used with a multiple-row subquery?", options: ["NOT IN", "LIKE", "=", "BETWEEN"], answer: [0], type: "MC", exp: "NOT IN is a valid multi-row operator." },
+            { id: 179, module: "Sub Queries", q: "Which statement about subqueries is true?", options: ["A SQL query statement cannot display data from table B that is referred to in its subquery without including table B in its own FROM clause.", "Single row subquery fetches from 1 table only.", "Single row subquery cannot use LIKE.", "Can display data from subquery table without FROM."], answer: [0], type: "MC", exp: "Columns in SELECT list must come from tables listed in outer FROM clause." },
+            { id: 180, module: "Sub Queries", q: "EMPLOYEES & NEW_EMPLOYEES. Which DELETE statement is valid?", options: ["DELETE FROM employees WHERE employee_id IN (SELECT employee_id FROM new_employees WHERE name = 'Carrey');", "DELETE FROM employees WHERE employee_id = (SELECT employee_id FROM employees);", "DELETE * FROM employees...", "DELETE * FROM employees..."], answer: [0], type: "MC", exp: "DELETE FROM employees WHERE employee_id IN (...)." },
+
+            // MODULE 10: Advanced Sub Queries (Q181 - Q200)
+            { id: 181, module: "Advanced Sub Queries", q: "Which statement about Subqueries is NOT valid?", options: ["The Outer query is executed first and then the inner subquery.", "Inner query returns value used by parent.", "Embedded SELECT statement.", "Nested subquery equivalent to two sequential queries."], answer: [0], type: "MC", exp: "In standard non-correlated subqueries, the inner subquery executes first, supplying its result to the outer query." },
+            { id: 182, module: "Advanced Sub Queries", q: "Subquery type in SELECT list returning 1 value: CASE WHEN department_id = (SELECT department_id FROM departments WHERE location_id = 1800) THEN 'Canada' ELSE 'USA' END", options: ["Scalar Sub query", "Pair-wise comparison", "Correlated sub query", "Inline sub query"], answer: [0], type: "MC", exp: "A scalar subquery returns exactly one column and one row value." },
+            { id: 183, module: "Advanced Sub Queries", q: "Which statement is NOT true about Correlated subqueries?", options: ["A correlated sub query is evaluated once for each parent statement.", "Evaluated once for each row processed by parent statement.", "Parent statement can be SELECT, UPDATE, DELETE.", "References column from outer table."], answer: [0], type: "MC", exp: "Correlated subquery evaluates once per row of parent statement." },
+            { id: 184, module: "Advanced Sub Queries", q: "SELECT employee_id, last_name FROM employees e ORDER BY (SELECT department_name FROM departments d WHERE e.department_id = d.department_id); Subquery type?", options: ["Correlated sub query", "Pair-wise comparison", "Inline sub query", "Non-pair wise"], answer: [0], type: "MC", exp: "Subquery references outer alias `e.department_id`, making it correlated." },
+            { id: 185, module: "Advanced Sub Queries", q: "What does EXISTS operator return when inner query selects NO records?", options: ["FALSE", "0", "TRUE", "NULL"], answer: [0], type: "MC", exp: "EXISTS returns FALSE if subquery yields zero rows." },
+            { id: 186, module: "Advanced Sub Queries", q: "SELECT employee_id, last_name FROM employees outer WHERE EXISTS (SELECT 'X' FROM employees WHERE manager_id = outer.employee_id); Output?", options: ["Display employees who have at least one person reporting to them.", "Display employees reporting to 'X'", "Display assigned managers", "Display name 'X'"], answer: [0], type: "MC", exp: "EXISTS subquery tests if outer employee_id matches as a manager_id." },
+            { id: 187, module: "Advanced Sub Queries", q: "Displays all departments that do NOT have any employees:", options: ["SELECT department_id, department_name FROM departments d WHERE NOT EXISTS (SELECT 'X' FROM employees WHERE department_id = d.department_id);", "SELECT ... WHERE EXISTS...", "SELECT ... WHERE department_id = department_id", "SELECT ... WHERE EXISTS..."], answer: [0], type: "MC", exp: "NOT EXISTS returns TRUE when subquery yields no rows." },
+            { id: 188, module: "Advanced Sub Queries", q: "UPDATE employees e SET department_name = (SELECT department_name FROM departments d WHERE e.department_id = d.department_id); Update type?", options: ["Correlated Update", "Inline Update", "Direct Update", "Indirect Update"], answer: [0], type: "MC", exp: "Correlated subquery inside SET clause." },
+            { id: 189, module: "Advanced Sub Queries", q: "Correlated subquery to delete rows from EMPLOYEES that exist in EMP_HISTORY:", options: ["DELETE FROM employees E WHERE employee_id = (SELECT employee_id FROM emp_history WHERE employee_id = E.employee_id);", "DELETE FROM employees E WHERE employee_id IN (SELECT employee_id FROM employees E, emp_history H...)", "DELETE FROM employees E WHERE employee_id IN (SELECT employee_id FROM emp_history H)", "DELETE FROM employees E, emp_history..."], answer: [0], type: "MC", exp: "Correlated equality subquery inside DELETE WHERE clause." },
+            { id: 190, module: "Advanced Sub Queries", q: "Which of the following is NOT true about using the WITH clause?", options: ["The WITH clause, unlike Inline views, can create permanent and reusable views", "Defines query block before main query.", "Known as subquery_factoring_clause.", "Reuses same query block."], answer: [0], type: "MC", exp: "WITH clause subqueries exist temporary during execution; they do NOT create permanent database view objects." },
+            { id: 191, module: "Advanced Sub Queries", q: "When is the WITH clause most effective?", options: ["When a query has many references to the same query block and there are joins and aggregations.", "When query has many tables to join.", "When using inline subqueries.", "To replace correlated subqueries."], answer: [0], type: "MC", exp: "Subquery factoring evaluates shared query blocks once and caches them in temporary tablespace." },
+            { id: 192, module: "Advanced Sub Queries", q: "Valid usage of subquery:", options: ["All of the above", "Define set of rows for INSERT", "Provide values for conditions in WHERE, HAVING", "Define values assigned in UPDATE"], answer: [0], type: "MC", exp: "Subqueries can be used across INSERT, UPDATE, DELETE, and SELECT." },
+            { id: 193, module: "Advanced Sub Queries", q: "Which of the following is NOT a benefit of using the WITH Clause?", options: ["It automatically sorts the output of the query", "Evaluates clause only once", "Enhances query performance", "Makes query easy to read"], answer: [0], type: "MC", exp: "WITH clause does not automatically sort query output unless explicitly ORDER BY is specified." },
+            { id: 194, module: "Advanced Sub Queries", q: "Identify the odd one out among operators used with subqueries:", options: ["=", "ANY", "ALL", "IN"], answer: [0], type: "MC", exp: "'=' is a single-row operator, while ANY, ALL, IN are multiple-row operators." },
+            { id: 195, module: "Advanced Sub Queries", q: "Displays details of employees who earn less than company average salary:", options: ["SELECT last_name, job_id, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees);", "SELECT ... GROUP BY Department_id", "SELECT ... HAVING salary < ...", "SELECT ... WHERE salary ANY ..."], answer: [0], type: "MC", exp: "Single-row subquery computes global company average." },
+            { id: 196, module: "Advanced Sub Queries", q: "What is a multicolumn subquery?", options: ["A subquery which selects more than one column", "There is no multi-column subquery", "Uses single row operators", "Uses DECODE statements"], answer: [0], type: "MC", exp: "Subquery selecting multiple attributes in SELECT list." },
+            { id: 197, module: "Advanced Sub Queries", q: "Output of: WHERE (manager_id, department_id) IN (SELECT manager_id, department_id FROM employees WHERE employee_id IN (178, 174));", options: ["Display details of employees managed by same manager AND work in same department as employee 178 or 174.", "Managed by same manager AND department as 178 AND 174", "Managed by same manager as 178/174 AND department as 178/174 independently", "Error"], answer: [0], type: "MC", exp: "Pairwise comparison evaluates (manager_id, department_id) combinations simultaneously." },
+            { id: 198, module: "Advanced Sub Queries", q: "WHERE manager_id IN (...) AND department_id IN (...) AND employee_id NOT IN (174, 141); Output?", options: ["Display details of employees managed by same manager as 178 or 174 AND in same department as 178 or 174 (non-pairwise comparison).", "Same manager and department simultaneously", "Error", "Same manager and dept as 178 and 174"], answer: [0], type: "MC", exp: "Non-pairwise subquery evaluates manager_id and department_id independently." },
+            { id: 199, module: "Advanced Sub Queries", q: "What is NOT true about Inline Subqueries?", options: ["The inline views created during the Sub query can be used later by same or other queries.", "Defines source for that particular statement only.", "Called inline view.", "Very similar to how views are used."], answer: [0], type: "MC", exp: "Inline views exist strictly within the scope of the executing statement." },
+            { id: 200, module: "Advanced Sub Queries", q: "What is NOT true about Scalar subqueries?", options: ["Multiple-column subqueries written to compare two or more columns do not qualify as scalar subqueries", "Value is select list item value.", "If returns 0 rows, value is NULL.", "Returns exactly 1 column from 1 row."], answer: [0], type: "MC", exp: "Statement A is true, wait: Scalar subquery MUST return exactly 1 row and 1 column." },
+
+            // MODULE 11: Views (Q201 - Q220)
+            { id: 201, module: "Views", q: "In which scenario would TOP N analysis be the best solution?", options: ["You want to rank the top three sales representatives who have sold maximum products", "Identify person with highest salary", "Manager supervising largest number", "Most senior employee"], answer: [0], type: "MC", exp: "TOP N analysis ranks top N elements from a dataset." },
+            { id: 202, module: "Views", q: "EMP_DEPT_VU view. Which statement produces an error?", options: ["None of the statements produce an error; all are valid", "SELECT * FROM emp_dept_vu;", "SELECT department_id, SUM(salary)...", "SELECT department_id, job_id, AVG(salary)..."], answer: [0], type: "MC", exp: "All SELECT queries querying views behave as valid base table queries." },
+            { id: 203, module: "Views", q: "Remove view EMP_DEPT_VU from schema:", options: ["DROP VIEW emp_dept_vu", "REMOVE emp_dept_vu;", "DELETE emp_dept_vu;", "DROP emp_dept_vu"], answer: [0], type: "MC", exp: "DROP VIEW <view_name> removes view definition." },
+            { id: 204, module: "Views", q: "Top N analysis requires:", options: ["The use of ROWNUM pseudo column (or FETCH FIRST / inline view with ORDER BY)", "Only inline view", "Use of ROWID", "GROUP BY clause"], answer: [0], type: "MC", exp: "In Oracle legacy, TOP-N requires an ordered inline view filtered by ROWNUM <= N." },
+            { id: 205, module: "Views", q: "What is true about updates through a view?", options: ["You cannot update a view with group functions", "Constraints on view override base table", "Group functions computed automatically", "Updates only view data, not table"], answer: [0], type: "MC", exp: "Complex views containing aggregate functions, GROUP BY, DISTINCT, or ROWNUM are non-updatable." },
+            { id: 206, module: "Views", q: "What does FORCE option do for creating a view?", options: ["creates a view regardless of whether or not the base tables exist", "creates view in another schema without privileges", "creates view even if parent table has constraints", "creates view with constraints"], answer: [0], type: "MC", exp: "CREATE FORCE VIEW compiles even if underlying tables do not exist yet." },
+            { id: 207, module: "Views", q: "Which of the following best describes an inline view?", options: ["a sub query that is part of the FROM clause of another query", "a schema object", "subquery with ORDER BY", "view with group functions"], answer: [0], type: "MC", exp: "Subquery defined inside FROM clause." },
+            { id: 208, module: "Views", q: "Which statement about views is NOT true?", options: ["The table must exist to create a view on it", "A view can be created as read only", "Created with GROUP BY clause", "Created based on another view"], answer: [0], type: "MC", exp: "False because using CREATE FORCE VIEW allows creating views without existing tables." },
+            { id: 209, module: "Views", q: "SELECT a.emp_name, a.sal, a.dept_id, b.maxsal FROM employees a, (SELECT dept_id, MAX(sal) maxsal FROM employees GROUP BY dept_id) b WHERE a.dept_id = b.dept_id AND a.sal < b.maxsal; Result?", options: ["Returns employee details for all employees earning less than maximum salary in their department", "Error at line 3", "Error at line 4", "Error at line 1"], answer: [0], type: "MC", exp: "Inline view 'b' calculates max salary per dept; outer query filters employees below max." },
+            { id: 210, module: "Views", q: "Create view EMP_VU allowing user to insert rows:", options: ["CREATE VIEW emp_Vu AS SELECT employee_id, emp_name, department_id FROM employees WHERE mgr_id IN (102, 120);", "CREATE VIEW emp_Vu AS SELECT department_id, SUM(sal)...", "CREATE VIEW emp_Vu AS SELECT ... DISTINCT...", "CREATE VIEW emp_Vu AS SELECT ... job_iddepartment_id..."], answer: [0], type: "MC", exp: "Simple views selecting columns without aggregates/DISTINCT allow INSERT operations." },
+            { id: 211, module: "Views", q: "Obtain definition (SELECT statement) of view EMP_DEPT_VU:", options: ["Query the USER_VIEWS data dictionary view to search for the EMP_DEPT_VU view", "DESCRIBE VIEW", "DEFINE VIEW", "Query USER_SOURCE"], answer: [0], type: "MC", exp: "USER_VIEWS dictionary view contains TEXT column with view definition." },
+            { id: 212, module: "Views", q: "What is necessary for query on an existing view to execute successfully?", options: ["You need SELECT privileges on the view.", "Underlying tables in same schema.", "Underlying tables must have data.", "Need SELECT privileges only on underlying tables."], answer: [0], type: "MC", exp: "User querying a view needs SELECT privilege on the view object." },
+            { id: 213, module: "Views", q: "When you use SQL Subquery in ________ clause of select statement it is called inline view:", options: ["from", "group by", "order by", "where"], answer: [0], type: "MC", exp: "Subqueries in FROM clause are inline views." },
+            { id: 214, module: "Views", q: "Modify EMP_DEPT_VU adding fourth column MANAGER_ID:", options: ["CREATE OR REPLACE VIEW emp_dept_vu AS SELECT employee_id, employee_name,department_name, manager_id FROM employees e, departments d WHERE e.department_id = d.department_id;", "ALTER VIEW emp_dept_vu...", "MODIFY VIEW...", "ALTER VIEW..."], answer: [0], type: "MC", exp: "CREATE OR REPLACE VIEW recreates view definition with new columns." },
+            { id: 215, module: "Views", q: "Which statement concerning creation of a view is true?", options: ["A view can have column names different than base table using column aliases.", "Derived columns named by Oracle.", "OR REPLACE requires regranting object privileges.", "Constraint name must be provided with WITH CHECK OPTION."], answer: [0], type: "MC", exp: "Column aliases allow view headings to differ from base table columns." },
+            { id: 216, module: "Views", q: "CREATE VIEW privilege allows you to:", options: ["Create a view in your schema", "Create table view", "Create view in any schema", "Create sequence view"], answer: [0], type: "MC", exp: "CREATE VIEW grants privilege to create views in user's own schema." },
+            { id: 217, module: "Views", q: "Which of the following is a valid option while creating a view?", options: ["WITH CHECK OPTION", "WITH BREAK OPTION", "ON DELETE CASCADE", "WITH GRANT OPTION"], answer: [0], type: "MC", exp: "WITH CHECK OPTION enforces view filter constraints on DML." },
+            { id: 218, module: "Views", q: "Inline view is embedded in the ______ clause of another SELECT statement.", options: ["FROM", "CASE", "WHERE", "SELECT"], answer: [0], type: "MC", exp: "FROM clause." },
+            { id: 219, module: "Views", q: "Create view EMP_VU allowing users to manipulate records of employees in departments 10 or 20 only:", options: ["CREATE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20) WITH CHECK OPTION;", "CREATE VIEW ... WITH READ ONLY;", "CREATE VIEW ... WHERE department_id IN (10,20);", "CREATE FORCE VIEW..."], answer: [0], type: "MC", exp: "WITH CHECK OPTION prevents inserting/updating rows out of department 10/20 domain." },
+            { id: 220, module: "Views", q: "Which statement about views is true?", options: ["A view can be created as read only", "Cannot have ORDER BY", "Cannot have GROUP BY", "Must have aliases"], answer: [0], type: "MC", exp: "WITH READ ONLY option creates a read-only view." },
+
+            // MODULE 12: Set Operators and Pseudo Column (Q221 - Q240)
+            { id: 221, module: "Set Operators and Pseudo Column", q: "Which of the following is NOT a SET operator?", options: ["Plus", "Intersect", "Union", "Minus"], answer: [0], type: "MC", exp: "Oracle Set operators are UNION, UNION ALL, INTERSECT, MINUS. 'Plus' is arithmetic." },
+            { id: 222, module: "Set Operators and Pseudo Column", q: "Display employee IDs of employees who have NOT changed jobs (present in EMPLOYEES, absent in JOB_HISTORY):", options: ["Minus", "Intersect", "Union", "Union All"], answer: [0], type: "MC", exp: "MINUS returns rows from first query not present in second query." },
+            { id: 223, module: "Set Operators and Pseudo Column", q: "Which of the following is NOT true about Set operators in general?", options: ["SET operators cannot be used in sub queries", "SELECT expressions must match in number and datatype.", "Parentheses alter sequence.", "Matching number/type of columns required."], answer: [0], type: "MC", exp: "SET operators CAN be used inside subqueries." },
+            { id: 224, module: "Set Operators and Pseudo Column", q: "Which statement about ORDER BY clause with SET Operators is NOT correct?", options: ["The ORDER BY clause: Can appear only at the end of the first SELECT statement", "Column alias in ORDER BY must be from first SELECT list.", "Accepts column name, alias, positional notation.", "Appears only at the very end of whole compound query."], answer: [0], type: "MC", exp: "ORDER BY must appear at the VERY END of the combined set statement, not after first SELECT." },
+            { id: 225, module: "Set Operators and Pseudo Column", q: "Which statement about Oracle Server and SET Operators is NOT true?", options: ["The data types of the output columns are same as the selected columns", "Output sorted in ascending order of first column by default.", "Column names in output decided by first SELECT statement.", "Eliminates duplicate rows automatically except UNION ALL."], answer: [0], type: "MC", exp: "Implicit conversion rules apply to output datatypes." },
+            { id: 226, module: "Set Operators and Pseudo Column", q: "What data does the DUAL table contain by default?", options: ["One column named DUMMY and one row with value X", "One column named D and row X", "One column named COL and row 1", "No data"], answer: [0], type: "MC", exp: "DUAL contains 1 column DUMMY VARCHAR2(1) containing value 'X'." },
+            { id: 227, module: "Set Operators and Pseudo Column", q: "What is NOT true about Oracle Pseudo columns?", options: ["You cannot insert value of a pseudo column in other table's columns.", "Behaves like table column but not stored in table.", "Maintained internally.", "Can select but cannot insert/update/delete pseudo column values."], answer: [0], type: "MC", exp: "You CAN insert pseudo column values (e.g. SYSDATE, ROWNUM, sequence.NEXTVAL) into standard table columns!" },
+            { id: 228, module: "Set Operators and Pseudo Column", q: "Which of the following is NOT a valid type or name of an Oracle Pseudo-column?", options: ["Sub Query Pseudo columns", "Hierarchical Query Pseudo columns", "Sequence Pseudo columns", "ROWNUM Pseudo column"], answer: [0], type: "MC", exp: "'Sub Query Pseudo columns' is not an Oracle pseudo-column category." },
+            { id: 229, module: "Set Operators and Pseudo Column", q: "Which statement about sequence pseudo columns is true?", options: ["You use a NEXTVAL pseudo column to obtain the next possible value from a sequence by actually retrieving the value.", "CURRVAL generates value.", "NEXTVAL looks without retrieving.", "CURRVAL generates next value."], answer: [0], type: "MC", exp: "NEXTVAL increments and retrieves sequence value." },
+            { id: 230, module: "Set Operators and Pseudo Column", q: "Which is NOT part of information contained inside ROWID pseudo column?", options: ["The position of the row in the oracle table", "Data object number", "Data file number", "Data block number"], answer: [0], type: "MC", exp: "ROWID encodes Object ID, Datafile ID, Block ID, and Row Slot Number inside block, not arbitrary logical position." },
+            { id: 231, module: "Set Operators and Pseudo Column", q: "Which pseudo column is useful while performing TOP-N analysis?", options: ["ROWNUM", "RANK", "ROWID", "LEVEL"], answer: [0], type: "MC", exp: "ROWNUM limits number of rows returned." },
+            { id: 232, module: "Set Operators and Pseudo Column", q: "Select employee details from two tables with duplicates, displaying each employee record ONCE:", options: ["Union", "Union all", "Minus", "Intersect"], answer: [0], type: "MC", exp: "UNION merges results and eliminates duplicates." },
+            { id: 233, module: "Set Operators and Pseudo Column", q: "Output of: SELECT * FROM employees WHERE ROWNUM < 10;", options: ["Returns 9 rows from Employees table, if 9 or more records exist.", "TOP-N analysis top earners", "Error", "10 records"], answer: [0], type: "MC", exp: "ROWNUM < 10 returns rows 1 through 9." },
+            { id: 234, module: "Set Operators and Pseudo Column", q: "Queries containing SET operators are called _______ queries.", options: ["Compound", "Set", "Complex", "Set Manipulation"], answer: [0], type: "MC", exp: "Set queries are referred to as Compound queries." },
+            { id: 235, module: "Set Operators and Pseudo Column", q: "What is NOT true about UNION operator?", options: ["NULL values are ignored during duplicate checking.", "UNION operates over all columns selected.", "IN operator higher precedence than UNION.", "Output sorted ascending by default."], answer: [0], type: "MC", exp: "NULLs are treated as equal values during UNION duplicate removal." },
+            { id: 236, module: "Set Operators and Pseudo Column", q: "Which set operator's output is NOT sorted by default?", options: ["Union All", "Minus", "Intersect", "Union"], answer: [0], type: "MC", exp: "UNION ALL simply appends results without sorting or removing duplicates." },
+            { id: 237, module: "Set Operators and Pseudo Column", q: "Which statement is NOT true about UNION ALL operator?", options: ["The DISTINCT keyword can be used", "Output not sorted by default", "Returns all rows from multiple queries", "Duplicates not eliminated"], answer: [0], type: "MC", exp: "DISTINCT keyword cannot be combined directly with UNION ALL syntax." },
+            { id: 238, module: "Set Operators and Pseudo Column", q: "What is NOT true about INTERSECT operator?", options: ["Reversing the order of intersected tables may result in a changed output", "INTERSECT does not ignore NULLs.", "Column names need not be identical.", "Number and datatypes must match."], answer: [0], type: "MC", exp: "INTERSECT is commutative; table order does NOT change the output set." },
+            { id: 239, module: "Set Operators and Pseudo Column", q: "Display records that are common results across queries:", options: ["Intersect", "Union", "Minus", "Union All"], answer: [0], type: "MC", exp: "INTERSECT returns common rows." },
+            { id: 240, module: "Set Operators and Pseudo Column", q: "Which is correct about use of UNION operator?", options: ["The number of columns and data types of columns selected must be identical in all SELECT statements", "Data types identical but number of columns different.", "Column names must be identical.", "Number of columns identical but datatypes different."], answer: [0], type: "MC", exp: "Column counts and datatypes must correspond." },
+
+            // MODULE 13: Normalization (Q241 - Q260)
+            { id: 241, module: "Normalization", q: "Which statement is NOT true about Database Normalization?", options: ["Normalization usually involves combining small tables and consolidating them into a single table so that maximum data can be accessed through each table.", "Organizing data to minimize redundancy.", "Decompose relations with anomalies.", "Dividing large tables into smaller tables."], answer: [0], type: "MC", exp: "Normalization divides tables into smaller cohesive relations; it does NOT consolidate small tables into one giant table." },
+            { id: 242, module: "Normalization", q: "Attribute Y is fully functionally dependent on attribute set X if it is _____.", options: ["Both A and B (Functionally dependent on X and not dependent on any proper subset of X)", "Functionally dependent on X", "Not dependent on proper subset of X", "Either A or B"], answer: [0], type: "MC", exp: "Full functional dependency requires dependency on whole key X, not a partial subset." },
+            { id: 243, module: "Normalization", q: "What is true about Multivalued dependency?", options: ["A multivalued dependency is a constraint according to which the presence of certain rows in a table implies the presence of certain other rows.", "Presence of primary key implies foreign key.", "Presence of functional dependency implies transitive.", "Transitive implies functional."], answer: [0], type: "MC", exp: "Multivalued dependency (4NF) requires independence between tuple attribute pairs." },
+            { id: 244, module: "Normalization", q: "Which statement is true about Super Keys?", options: ["A super key is a combination of attributes that can be used to uniquely identify a database record", "Super key cannot be candidate key.", "Table has only one super key.", "Super key may not contain candidate key attributes."], answer: [0], type: "MC", exp: "A super key uniquely identifies any row in a relation." },
+            { id: 245, module: "Normalization", q: "Which of the following statements is NOT true?", options: ["A non-prime attribute is an attribute that does not occur in any super key.", "Prime attribute is part of super keys.", "Prime attribute occurs in candidate key.", "Non-prime attribute does not occur in candidate key."], answer: [0], type: "MC", exp: "Non-prime attributes can be present in super keys (since super key = candidate key + extra attributes)." },
+            { id: 246, module: "Normalization", q: "Which condition is NOT a valid condition for First Normal Form (1NF)?", options: ["There's left-to-right ordering to the columns.", "No duplicate rows.", "No top-to-bottom ordering to rows.", "Atomic values in every row-column intersection."], answer: [0], type: "MC", exp: "Relational theory specifies that column order is immaterial." },
+            { id: 247, module: "Normalization", q: "Employees' Skills table: (Employee, Skill -> Location). Why is it in 1NF but NOT in 2NF?", options: ["The non-prime attribute(s) (Location) are dependent on a subset of prime attributes (Employee), causing partial dependency.", "Multiple records for same employee.", "Non-prime dependent on all prime attributes.", "Not in 1NF."], answer: [0], type: "MC", exp: "Location depends on Employee alone, not the composite key (Employee, Skill). This is partial dependency." },
+            { id: 248, module: "Normalization", q: "Tournament Winners table: (Tournament, Year -> Winner -> Winner DOB). Which 3NF condition is violated?", options: ["Every non-prime attribute must be non-transitively dependent on every candidate key.", "Prime attribute non-transitively dependent.", "Must be in 2NF", "Must be in 1NF"], answer: [0], type: "MC", exp: "Winner DOB depends on Winner (non-prime attribute), creating transitive dependency." },
+            { id: 249, module: "Normalization", q: "Which statement about Boyce-Codd Normal Form (BCNF) is NOT true?", options: ["A 3NF table which does not have multiple overlapping candidate keys is supposed to be not in BCNF.", "Rare cases 3NF not in BCNF.", "Addresses anomalies not handled by 3NF.", "Stronger version of 3NF."], answer: [0], type: "MC", exp: "If a 3NF table does NOT have multiple overlapping candidate keys, it is guaranteed to be in BCNF." },
+            { id: 250, module: "Normalization", q: "What is the full form of DKNF?", options: ["Domain-Key Normal Form", "Donner-Korth Normal Form", "Dual-Key Normal Form", "Domain-Knowledge Normal Form"], answer: [0], type: "MC", exp: "DKNF stands for Domain-Key Normal Form." },
+            { id: 251, module: "Normalization", q: "If a table is in 3NF, which may NOT be true?", options: ["The table is free of modification anomalies.", "Row-column intersection atomic.", "Non-prime attributes non-transitively dependent.", "Non-prime attributes dependent on whole candidate key."], answer: [0], type: "MC", exp: "3NF eliminates partial and transitive dependencies, but modification anomalies can still exist due to multivalued dependencies (handled by 4NF/5NF)." },
+            { id: 252, module: "Normalization", q: "Which statement correctly describes modification anomalies?", options: ["When an attempt is made to modify a table, undesired side-effects may follow", "Occur only up to 2NF.", "Data cannot be modified.", "Errors frequently occur."], answer: [0], type: "MC", exp: "Modification anomalies cause unintended data loss or inconsistencies." },
+            { id: 253, module: "Normalization", q: "Which indicates that Y is transitively dependent on X?", options: ["Z -> Y and X -> Z", "X -> Y, Z -> X", "X -> Y, Z -> X", "Y -> Z, Z -> X"], answer: [0], type: "MC", exp: "If X -> Z and Z -> Y, then Y is transitively dependent on X via Z." },
+            { id: 254, module: "Normalization", q: "Correct full form of BCNF normal form:", options: ["Boyce-Codd normal form", "Boyce-Cartesian normal form", "Bond-Codd normal form", "Borne-Codd normal form"], answer: [0], type: "MC", exp: "Boyce-Codd Normal Form." },
+            { id: 255, module: "Normalization", q: "Which of the following is NOT a valid type of Modification anomaly?", options: ["Drop anomaly", "Update Anomaly", "Insertion anomaly", "Deletion anomaly"], answer: [0], type: "MC", exp: "Standard anomalies are Insertion, Deletion, and Update anomalies." },
+            { id: 256, module: "Normalization", q: "Faculty table with redundant faculty details per course code. What anomalies occur?", options: ["Insertion, Update and Deletion anomaly", "Only Insertion anomaly", "Insertion and Update anomaly", "Update and Deletion anomaly"], answer: [0], type: "MC", exp: "Unnormalized tables suffer from Insertion, Update, and Deletion anomalies." },
+            { id: 257, module: "Normalization", q: "Which of the following is NOT a valid objective of normalization?", options: ["Completely avoid the need to change the table structure after normalization", "Get rid of modification anomalies", "Make data model informative", "Minimize redesign when extending"], answer: [0], type: "MC", exp: "Normalization cannot guarantee that future business requirement changes won't alter table schema." },
+            { id: 258, module: "Normalization", q: "Transactions table containing repeating groups / blank spaces for non-first records. Normal form?", options: ["Non 1NF", "3NF", "1NF", "2NF"], answer: [0], type: "MC", exp: "Contains repeating groups or unpopulated repeating cells, so it fails 1NF." },
+            { id: 259, module: "Normalization", q: "What is Functional dependency?", options: ["In a given table, an attribute Y has functional dependency on X if each X value is associated with precisely one Y value", "Each X value associated with more than one Y", "Each Y value associated with precisely one X", "Each X value associated with at least one Y"], answer: [0], type: "MC", exp: "X -> Y means X uniquely determines Y." },
+            { id: 260, module: "Normalization", q: "What does X -> Y mean about attributes X and Y?", options: ["Y is functionally dependent on X", "X is functionally dependent on Y", "None", "X and Y dependent on each other"], answer: [0], type: "MC", exp: "X -> Y translates to 'Y is functionally dependent on X'." }
+        ];
+
+        // STATE APP MANAGEMENT
+        let currentQuizQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = {}; // { qIndex: [selectedOptionIndices] }
+        let flaggedQuestions = new Set();
+        let bookmarkedQuestions = new Set();
+        let quizMode = 'practice'; // 'practice' or 'exam'
+        let examTimeRemaining = 0;
+        let examTimerInterval = null;
+        let examStartTime = 0;
+        let currentActiveModule = 'all';
+
+        // INITIALIZATION ON LOAD
+        window.onload = function() {
+            renderModuleCards();
+            populateSearchModuleFilter();
+            filterSearchBank();
+            updateHistoryUI();
+        };
+
+        // VIEW NAVIGATION
+        function showView(viewName) {
+            document.querySelectorAll('main > section').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`view-${viewName}`).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (viewName === 'history') updateHistoryUI();
+        }
+
+        // RENDER MODULE CARDS
+        function renderModuleCards() {
+            const modules = {};
+            QUESTION_BANK.forEach(q => {
+                modules[q.module] = (modules[q.module] || 0) + 1;
+            });
+
+            const grid = document.getElementById('module-grid');
+            grid.innerHTML = '';
+
+            Object.keys(modules).forEach((modName, idx) => {
+                const count = modules[modName];
+                const card = document.createElement('div');
+                card.className = "bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 hover:border-sky-500/50 rounded-2xl p-5 transition-all duration-200 flex flex-col justify-between group shadow-lg";
+                
+                card.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-700 text-sky-400 font-mono font-medium">Mod ${idx + 1}</span>
+                            <span class="text-xs text-slate-400"><i class="fa-solid fa-list-check mr-1"></i>${count} Qs</span>
+                        </div>
+                        <h4 class="font-bold text-slate-100 text-base group-hover:text-sky-300 transition-colors">${modName}</h4>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-slate-700/40 flex items-center gap-2">
+                        <button onclick="startQuiz('${modName}', 'practice')" class="flex-1 py-2 px-3 rounded-xl bg-sky-600/20 hover:bg-sky-600 text-sky-300 hover:text-white font-medium text-xs border border-sky-500/30 transition flex items-center justify-center space-x-1">
+                            <i class="fa-solid fa-graduation-cap text-xs"></i>
+                            <span>Practice</span>
+                        </button>
+                        <button onclick="startQuiz('${modName}', 'exam')" class="flex-1 py-2 px-3 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium text-xs transition flex items-center justify-center space-x-1">
+                            <i class="fa-solid fa-stopwatch text-amber-400 text-xs"></i>
+                            <span>Exam Mode</span>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // START QUIZ LOGIC
+        function startQuiz(moduleFilter, mode) {
+            currentActiveModule = moduleFilter;
+            quizMode = mode;
+            userAnswers = {};
+            flaggedQuestions.clear();
+            currentQuestionIndex = 0;
+
+            // Filter
+            if (moduleFilter === 'all') {
+                currentQuizQuestions = [...QUESTION_BANK];
+            } else {
+                currentQuizQuestions = QUESTION_BANK.filter(q => q.module === moduleFilter);
+            }
+
+            // Shuffle Questions Option
+            if (document.getElementById('opt-shuffle-q').checked) {
+                currentQuizQuestions.sort(() => Math.random() - 0.5);
+            }
+
+            // Clone & Shuffle Options if needed
+            currentQuizQuestions = currentQuizQuestions.map(q => {
+                let options = [...q.options];
+                let correctIndices = [...q.answer];
+
+                if (document.getElementById('opt-shuffle-o').checked) {
+                    const indexedOptions = options.map((opt, i) => ({ text: opt, originalIndex: i }));
+                    indexedOptions.sort(() => Math.random() - 0.5);
+                    options = indexedOptions.map(o => o.text);
+                    correctIndices = indexedOptions
+                        .map((o, newIdx) => q.answer.includes(o.originalIndex) ? newIdx : -1)
+                        .filter(idx => idx !== -1);
+                }
+
+                return { ...q, options, answer: correctIndices };
+            });
+
+            // UI Adjustments
+            document.getElementById('quiz-title').textContent = moduleFilter === 'all' ? "All Modules Review" : moduleFilter;
+            document.getElementById('quiz-module-tag').textContent = mode.toUpperCase() + " MODE";
+            document.getElementById('q-total').textContent = currentQuizQuestions.length;
+
+            if (mode === 'exam') {
+                document.getElementById('exam-timer-box').classList.remove('hidden');
+                document.getElementById('btn-submit-exam').classList.remove('hidden');
+                // Set timer: 1 minute per question
+                examTimeRemaining = currentQuizQuestions.length * 60;
+                examStartTime = Date.now();
+                startExamTimer();
+            } else {
+                document.getElementById('exam-timer-box').classList.add('hidden');
+                document.getElementById('btn-submit-exam').classList.add('hidden');
+                clearInterval(examTimerInterval);
+            }
+
+            renderPalette();
+            loadQuestion(0);
+            showView('quiz');
+        }
+
+        // TIMER
+        function startExamTimer() {
+            clearInterval(examTimerInterval);
+            updateTimerDisplay();
+            examTimerInterval = setInterval(() => {
+                examTimeRemaining--;
+                updateTimerDisplay();
+                if (examTimeRemaining <= 0) {
+                    clearInterval(examTimerInterval);
+                    alert("Time is up! Submitting your exam now.");
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const h = Math.floor(examTimeRemaining / 3600);
+            const m = Math.floor((examTimeRemaining % 3600) / 60);
+            const s = examTimeRemaining % 60;
+            document.getElementById('exam-timer').textContent = 
+                `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }
+
+        // LOAD QUESTION
+        function loadQuestion(index) {
+            currentQuestionIndex = index;
+            const q = currentQuizQuestions[index];
+
+            document.getElementById('q-curr').textContent = index + 1;
+            document.getElementById('q-progress-bar').style.width = `${((index + 1) / currentQuizQuestions.length) * 100}%`;
+            document.getElementById('q-type-badge').textContent = q.type === 'MA' ? 'Multiple Selection (MA)' : 'Single Choice (MC)';
+            document.getElementById('q-text').textContent = q.q;
+
+            // Options rendering
+            const optContainer = document.getElementById('q-options');
+            optContainer.innerHTML = '';
+
+            const selected = userAnswers[index] || [];
+
+            q.options.forEach((optText, oIdx) => {
+                const btn = document.createElement('button');
+                btn.className = getOptionStyle(index, oIdx);
+                btn.onclick = () => handleSelectOption(index, oIdx);
+
+                const isChecked = selected.includes(oIdx);
+                const letter = String.fromCharCode(65 + oIdx);
+
+                btn.innerHTML = `
+                    <div class="flex items-start space-x-3 text-left">
+                        <span class="w-6 h-6 rounded-lg bg-slate-800 border border-slate-600 flex items-center justify-center text-xs font-mono font-bold ${isChecked ? 'bg-sky-500 border-sky-400 text-white' : 'text-slate-300'} flex-shrink-0 mt-0.5">
+                            ${letter}
+                        </span>
+                        <span class="text-sm text-slate-200 leading-relaxed font-normal">${optText}</span>
+                    </div>
+                `;
+                optContainer.appendChild(btn);
+            });
+
+            // Explanation handling in practice mode
+            const expBox = document.getElementById('explanation-box');
+            if (quizMode === 'practice' && selected.length > 0) {
+                expBox.classList.remove('hidden');
+                document.getElementById('explanation-text').textContent = q.exp || "Correct answer marker verified.";
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Prev/Next button states
+            document.getElementById('btn-prev').disabled = index === 0;
+            document.getElementById('btn-next').disabled = index === currentQuizQuestions.length - 1;
+
+            // Update Flag & Bookmark Button states
+            updateFlagBookmarkBtns();
+            updatePalette();
+        }
+
+        function getOptionStyle(qIdx, oIdx) {
+            const selected = userAnswers[qIdx] || [];
+            const isSelected = selected.includes(oIdx);
+            const q = currentQuizQuestions[qIdx];
+
+            let base = "w-full p-3.5 rounded-xl border text-left transition-all duration-150 relative ";
+
+            if (quizMode === 'practice' && selected.length > 0) {
+                const isCorrect = q.answer.includes(oIdx);
+                if (isCorrect) {
+                    return base + "bg-emerald-950/40 border-emerald-500 text-emerald-200 ring-1 ring-emerald-500";
+                }
+                if (isSelected && !isCorrect) {
+                    return base + "bg-rose-950/40 border-rose-500 text-rose-200 ring-1 ring-rose-500";
+                }
+                return base + "bg-slate-900/40 border-slate-800 text-slate-400 opacity-60";
+            }
+
+            if (isSelected) {
+                return base + "bg-sky-950/50 border-sky-500 text-sky-100 ring-1 ring-sky-500";
+            }
+
+            return base + "bg-slate-900/60 hover:bg-slate-800/80 border-slate-700/80 text-slate-200";
+        }
+
+        // HANDLE OPTION SELECTION
+        function handleSelectOption(qIdx, oIdx) {
+            const q = currentQuizQuestions[qIdx];
+
+            if (q.type === 'MC') {
+                userAnswers[qIdx] = [oIdx];
+            } else { // Multiple Answer
+                let current = userAnswers[qIdx] || [];
+                if (current.includes(oIdx)) {
+                    current = current.filter(i => i !== oIdx);
+                } else {
+                    current.push(oIdx);
+                }
+                userAnswers[qIdx] = current;
+            }
+
+            loadQuestion(qIdx);
+        }
+
+        // PALETTE UI
+        function renderPalette() {
+            const pal = document.getElementById('question-palette');
+            pal.innerHTML = '';
+
+            currentQuizQuestions.forEach((_, idx) => {
+                const btn = document.createElement('button');
+                btn.id = `pal-btn-${idx}`;
+                btn.className = "w-8 h-8 rounded-lg text-xs font-semibold flex items-center justify-center transition border";
+                btn.onclick = () => loadQuestion(idx);
+                btn.textContent = idx + 1;
+                pal.appendChild(btn);
+            });
+
+            updatePalette();
+        }
+
+        function updatePalette() {
+            let answeredCount = 0;
+            currentQuizQuestions.forEach((q, idx) => {
+                const btn = document.getElementById(`pal-btn-${idx}`);
+                if (!btn) return;
+
+                const hasAns = userAnswers[idx] && userAnswers[idx].length > 0;
+                const isFlagged = flaggedQuestions.has(idx);
+                const isCurrent = currentQuestionIndex === idx;
+
+                if (hasAns) answeredCount++;
+
+                let cls = "w-8 h-8 rounded-lg text-xs font-semibold flex items-center justify-center transition border ";
+
+                if (isCurrent) {
+                    cls += "ring-2 ring-sky-400 ring-offset-2 ring-offset-slate-900 ";
+                }
+
+                if (quizMode === 'practice' && hasAns) {
+                    const isCorrect = isArrayEqual(userAnswers[idx], q.answer);
+                    if (isCorrect) {
+                        cls += "bg-emerald-600 border-emerald-500 text-white";
+                    } else {
+                        cls += "bg-rose-600 border-rose-500 text-white";
+                    }
+                } else if (isFlagged) {
+                    cls += "bg-amber-500/20 border-amber-500 text-amber-300";
+                } else if (hasAns) {
+                    cls += "bg-sky-600 border-sky-500 text-white";
+                } else {
+                    cls += "bg-slate-800 border-slate-700 text-slate-400 hover:bg-slate-700";
+                }
+
+                btn.className = cls;
+            });
+
+            document.getElementById('palette-count').textContent = `${answeredCount} of ${currentQuizQuestions.length} answered`;
+        }
+
+        function navQuestion(dir) {
+            const target = currentQuestionIndex + dir;
+            if (target >= 0 && target < currentQuizQuestions.length) {
+                loadQuestion(target);
+            }
+        }
+
+        function toggleFlagCurrent() {
+            if (flaggedQuestions.has(currentQuestionIndex)) {
+                flaggedQuestions.delete(currentQuestionIndex);
+            } else {
+                flaggedQuestions.add(currentQuestionIndex);
+            }
+            updateFlagBookmarkBtns();
+            updatePalette();
+        }
+
+        function toggleBookmarkCurrent() {
+            const qId = currentQuizQuestions[currentQuestionIndex].id;
+            if (bookmarkedQuestions.has(qId)) {
+                bookmarkedQuestions.delete(qId);
+            } else {
+                bookmarkedQuestions.add(qId);
+            }
+            updateFlagBookmarkBtns();
+        }
+
+        function updateFlagBookmarkBtns() {
+            const flagBtn = document.getElementById('flag-btn');
+            const bmarkBtn = document.getElementById('bookmark-btn');
+
+            if (flaggedQuestions.has(currentQuestionIndex)) {
+                flagBtn.className = "text-xs px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center space-x-1";
+            } else {
+                flagBtn.className = "text-xs px-2.5 py-1 rounded bg-slate-700/50 hover:bg-slate-700 text-slate-300 flex items-center space-x-1";
+            }
+
+            const qId = currentQuizQuestions[currentQuestionIndex].id;
+            if (bookmarkedQuestions.has(qId)) {
+                bmarkBtn.className = "text-xs px-2.5 py-1 rounded bg-sky-500/20 text-sky-300 border border-sky-500/40 flex items-center space-x-1";
+            } else {
+                bmarkBtn.className = "text-xs px-2.5 py-1 rounded bg-slate-700/50 hover:bg-slate-700 text-slate-300 flex items-center space-x-1";
+            }
+        }
+
+        function confirmSubmitExam() {
+            const answered = Object.keys(userAnswers).length;
+            const total = currentQuizQuestions.length;
+            if (confirm(`Are you sure you want to submit your exam?\nYou answered ${answered} out of ${total} questions.`)) {
+                finishQuiz();
+            }
+        }
+
+        function exitQuiz() {
+            if (confirm("Exit current practice session? Progress will be lost.")) {
+                clearInterval(examTimerInterval);
+                showView('home');
+            }
+        }
+
+        // FINISH QUIZ & CALCULATE SCORE
+        function finishQuiz() {
+            clearInterval(examTimerInterval);
+
+            let score = 0;
+            const total = currentQuizQuestions.length;
+
+            currentQuizQuestions.forEach((q, idx) => {
+                const uAns = userAnswers[idx] || [];
+                if (isArrayEqual(uAns, q.answer)) {
+                    score++;
+                }
+            });
+
+            const pct = Math.round((score / total) * 100);
+            const timeElapsed = quizMode === 'exam' ? Math.round((Date.now() - examStartTime) / 1000) : 0;
+
+            document.getElementById('res-score-pct').textContent = `${pct}%`;
+            document.getElementById('res-score-raw').textContent = `${score}/${total}`;
+            document.getElementById('res-accuracy').textContent = `${pct}%`;
+            
+            const mins = Math.floor(timeElapsed / 60);
+            const secs = timeElapsed % 60;
+            document.getElementById('res-time-taken').textContent = quizMode === 'exam' ? `${mins}m ${secs}s` : 'N/A';
+
+            // Save to LocalStorage History
+            saveHistoryRecord({
+                date: new Date().toLocaleString(),
+                module: currentActiveModule,
+                mode: quizMode,
+                score: score,
+                total: total,
+                pct: pct
+            });
+
+            renderResultsReviewList();
+            showView('results');
+        }
+
+        function retakeCurrentQuiz() {
+            startQuiz(currentActiveModule, quizMode);
+        }
+
+        function renderResultsReviewList() {
+            const container = document.getElementById('results-review-list');
+            container.innerHTML = '';
+
+            currentQuizQuestions.forEach((q, idx) => {
+                const uAns = userAnswers[idx] || [];
+                const isCorrect = isArrayEqual(uAns, q.answer);
+
+                const div = document.createElement('div');
+                div.className = `p-4 rounded-xl border text-sm space-y-2 ${isCorrect ? 'bg-emerald-950/20 border-emerald-500/40' : 'bg-rose-950/20 border-rose-500/40'}`;
+
+                let uAnsText = uAns.length > 0 ? uAns.map(i => q.options[i]).join(', ') : '<span class="italic text-slate-500">Unanswered</span>';
+                let cAnsText = q.answer.map(i => q.options[i]).join(', ');
+
+                div.innerHTML = `
+                    <div class="flex items-start justify-between">
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded ${isCorrect ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">
+                            Q${idx + 1}. ${isCorrect ? 'Correct' : 'Incorrect'}
+                        </span>
+                        <span class="text-xs text-slate-400">${q.module}</span>
+                    </div>
+                    <p class="font-medium text-slate-200">${q.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-1">
+                        <div class="p-2 rounded bg-slate-900/60 border border-slate-800">
+                            <span class="text-slate-400 block mb-0.5">Your Answer:</span>
+                            <span class="${isCorrect ? 'text-emerald-300 font-medium' : 'text-rose-300 font-medium'}">${uAnsText}</span>
+                        </div>
+                        <div class="p-2 rounded bg-slate-900/60 border border-slate-800">
+                            <span class="text-slate-400 block mb-0.5">Correct Answer:</span>
+                            <span class="text-emerald-300 font-medium">${cAnsText}</span>
+                        </div>
+                    </div>
+                    ${q.exp ? `<p class="text-xs text-slate-400 bg-slate-900/40 p-2 rounded border border-slate-800/60"><strong class="text-sky-400">Note:</strong> ${q.exp}</p>` : ''}
+                `;
+
+                container.appendChild(div);
+            });
+        }
+
+        // SEARCH QUESTION BANK
+        function populateSearchModuleFilter() {
+            const select = document.getElementById('search-module-filter');
+            const modules = [...new Set(QUESTION_BANK.map(q => q.module))];
+
+            modules.forEach(mod => {
+                const opt = document.createElement('option');
+                opt.value = mod;
+                opt.textContent = mod;
+                select.appendChild(opt);
+            });
+        }
+
+        function filterSearchBank() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const selectedMod = document.getElementById('search-module-filter').value;
+
+            const filtered = QUESTION_BANK.filter(q => {
+                const matchesMod = selectedMod === 'ALL' || q.module === selectedMod;
+                const matchesQuery = q.q.toLowerCase().includes(query) || q.options.some(o => o.toLowerCase().includes(query));
+                return matchesMod && matchesQuery;
+            });
+
+            const container = document.getElementById('search-results-list');
+            container.innerHTML = '';
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="text-center text-slate-500 py-8 text-sm">No questions match your query.</div>`;
+                return;
+            }
+
+            filtered.slice(0, 50).forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-800/60 border border-slate-700/60 rounded-xl p-4 space-y-2 text-sm";
+                card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 font-medium">${q.module}</span>
+                        <span class="text-xs text-slate-500">Q#${q.id}</span>
+                    </div>
+                    <p class="font-medium text-slate-200">${q.q}</p>
+                    <div class="space-y-1 text-xs pt-1">
+                        ${q.options.map((opt, i) => `
+                            <div class="px-2.5 py-1.5 rounded ${q.answer.includes(i) ? 'bg-emerald-950/40 text-emerald-300 font-semibold border border-emerald-500/30' : 'bg-slate-900/40 text-slate-400'}">
+                                ${String.fromCharCode(65 + i)}. ${opt}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // HISTORY / LOCALSTORAGE LOGIC
+        function saveHistoryRecord(record) {
+            let history = JSON.parse(localStorage.getItem('cdac_dbms_quiz_history') || '[]');
+            history.unshift(record);
+            localStorage.setItem('cdac_dbms_quiz_history', JSON.stringify(history));
+        }
+
+        function updateHistoryUI() {
+            let history = JSON.parse(localStorage.getItem('cdac_dbms_quiz_history') || '[]');
+
+            document.getElementById('hist-total-attempts').textContent = history.length;
+
+            if (history.length > 0) {
+                const avg = Math.round(history.reduce((acc, cur) => acc + cur.pct, 0) / history.length);
+                const totalQs = history.reduce((acc, cur) => acc + cur.total, 0);
+
+                document.getElementById('hist-avg-score').textContent = `${avg}%`;
+                document.getElementById('hist-total-qs').textContent = totalQs;
+
+                const logContainer = document.getElementById('history-log-list');
+                logContainer.innerHTML = '';
+
+                history.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = "bg-slate-900/60 border border-slate-800 rounded-xl p-3 flex items-center justify-between text-xs";
+                    row.innerHTML = `
+                        <div>
+                            <div class="font-bold text-slate-200">${item.module === 'all' ? 'Full Question Bank' : item.module}</div>
+                            <div class="text-slate-500">${item.date} &bull; <span class="uppercase">${item.mode}</span></div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-bold ${item.pct >= 70 ? 'text-emerald-400' : 'text-amber-400'} text-sm">${item.score}/${item.total}</span>
+                            <div class="text-slate-400">${item.pct}%</div>
+                        </div>
+                    `;
+                    logContainer.appendChild(row);
+                });
+            }
+        }
+
+        function clearQuizHistory() {
+            if (confirm("Are you sure you want to clear your quiz history?")) {
+                localStorage.removeItem('cdac_dbms_quiz_history');
+                updateHistoryUI();
+            }
+        }
+
+        // UTILITY FUNCTIONS
+        function isArrayEqual(a, b) {
+            if (!a || !b) return false;
+            if (a.length !== b.length) return false;
+            const sortedA = [...a].sort();
+            const sortedB = [...b].sort();
+            return sortedA.every((val, index) => val === sortedB[index]);
+        }
+    </script>
+</body>
+</html>
